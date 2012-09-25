@@ -2,10 +2,15 @@
 /*
   Plugin Name: Euro foreign exchange reference rates convertor
   Plugin URI: http://dekeijzer.org/
-  Description: Converts currencies based on the ECB reference exchange rates.
-  Author: Joost de Keijzer
-  Version: 0.1
+  Description: Sortcode to convert currencies based on the ECB reference exchange rates. It adds a [currency] and [currency_legal] shortcode to WordPress.
+  Author: joostdekeijzer
+  Version: 1.0
   Author URI: http://dekeijzer.org/
+ */
+/*
+  This plugin is based on the Xclamation Currency Convertor Shortcode plugin.
+  See http://www.xclamationdesign.co.uk/free-currency-converter-shortcode-plugin-for-wordpress/
+  for more information.
  */
 
 if ( !function_exists( 'add_action' ) ) {
@@ -23,7 +28,7 @@ class EuroFxRef {
 		// for testing
 		//delete_transient( $transient_label );
 		$this->euroFxRef = get_transient( $transient_label );
-		if( $this->euroFxRef == false ) {
+		if( false == $this->euroFxRef ) {
 			$this->_loadEuroFxRef( $transient_label );
 		}
 		add_shortcode( 'currency', array( $this, 'currency_convertor' ) );
@@ -49,6 +54,11 @@ class EuroFxRef {
 			'to_style' => 'cursor:help;border-bottom:1px dotted gray;',
 		), $atts ) );
 
+		// fix booleans
+		foreach( array( 'iso', 'show_from', 'round' ) as $var ) {
+			$$var = $this->_bool_from_string( $$var );
+		}
+
 		// load $currency and $number_format variables
 		include( dirname( __FILE__ ) . '/currency_symbols.php');
 
@@ -61,13 +71,13 @@ class EuroFxRef {
 		$cAmount = $this->_convert( $amount, strtoupper( $from ), strtoupper( $to ) );
 		if( $cAmount > 0 ) {
 			$cAmount = number_format( $cAmount, ( $round ? 0 : 2 ), $number_format[$to]['dp'], $number_format[$to]['ts'] );
-			if( $round ) $cAmount .= $number_format[$to]['dp'] . $round_append;
+			if( $round && '' != $round_append ) $cAmount .= $number_format[$to]['dp'] . $round_append;
 		} else {
 			$show_from = true;
 		}
 
 		$amount = number_format( $amount, ( $round ? 0 : 2 ), $number_format[$from]['dp'], $number_format[$from]['ts'] );
-		if( $round ) $amount .= $number_format[$from]['dp'] . $round_append;
+		if( $round && '' != $round_append ) $amount .= $number_format[$from]['dp'] . $round_append;
 
 		$s = $this->space;
 		if( $show_from ) {
@@ -127,6 +137,34 @@ class EuroFxRef {
 		} else {
 			// from ... to Euro
 			return $amount / $this->euroFxRef[$from];
+		}
+	}
+
+	/**
+	 * converts strings and integers to boolean values.
+	 * 0, "0", false, "FALSE", "no", 'n' etc. becomes (bool) false
+	 * all other becomes (bool) true.
+	 * 
+	 * The function itself defaults to (bool) false
+	 * 
+	 * Also see http://php.net/manual/en/function.is-bool.php#93165
+	 */
+	private function _bool_from_string( $val = false ) {
+		if( is_bool( $val ) ) return $val;
+
+		$val = strtolower( trim( $val ) );
+
+		if(
+			'false' == $val ||
+			'null' == $val ||
+			'off' == $val ||
+			'no' == $val ||
+			'n' == $val ||
+			'0' == $val
+		) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 }
