@@ -1,14 +1,14 @@
 <?php
 /*
-  Plugin Name: Euro foreign exchange reference rates convertor
+  Plugin Name: Euro foreign exchange reference rates converter
   Plugin URI: http://dekeijzer.org/
-  Description: Sortcode to convert currencies based on the ECB reference exchange rates. It adds a [currency] and [currency_legal] shortcode to WordPress.
+  Description: Shortcode(s) to convert currencies based on the ECB reference exchange rates. It adds a [currency] and [currency_legal] shortcode to WordPress.
   Author: joostdekeijzer
   Version: 1.0
   Author URI: http://dekeijzer.org/
  */
 /*
-  This plugin is based on the Xclamation Currency Convertor Shortcode plugin.
+  This plugin is based on the Xclamation Currency Converter Shortcode plugin.
   See http://www.xclamationdesign.co.uk/free-currency-converter-shortcode-plugin-for-wordpress/
   for more information.
  */
@@ -31,7 +31,7 @@ class EuroFxRef {
 		if( false == $this->euroFxRef ) {
 			$this->_loadEuroFxRef( $transient_label );
 		}
-		add_shortcode( 'currency', array( $this, 'currency_convertor' ) );
+		add_shortcode( 'currency', array( $this, 'currency_converter' ) );
 		add_shortcode( 'currency_legal', array( $this, 'legal_string' ) );
 	}
 
@@ -39,7 +39,7 @@ class EuroFxRef {
 		return $notice . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.', __CLASS__ );
 	}
 
-	function currency_convertor( $atts ) {
+	function currency_converter( $atts ) {
 		extract( shortcode_atts( array(
 			'amount' => '1',
 			'from' => 'EUR',
