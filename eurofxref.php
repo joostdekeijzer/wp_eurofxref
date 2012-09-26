@@ -35,13 +35,13 @@ class EuroFxRef {
 		add_shortcode( 'currency_legal', array( $this, 'legal_string' ) );
 	}
 
-	static function legal_string( $arg ) {
+	static function legal_string( $atts ) {
 		$prepend = '* ';
 
-		if( is_string( $arg ) ) {
-			$prepend = $arg;
-		} else if( is_array( $arg ) && isset( $arg['prepend'] ) ) {
-			$prepend = $arg['prepend'];
+		if( is_string( $atts ) ) {
+			$prepend = $atts;
+		} else if( is_array( $atts ) && isset( $atts['prepend'] ) ) {
+			$prepend = $atts['prepend'];
 		}
 		return $prepend . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.', __CLASS__ );
 	}
