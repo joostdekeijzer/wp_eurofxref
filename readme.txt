@@ -29,7 +29,11 @@ for more information.
 == Shortcode usage & examples ==
 
 = currency_legal shortcode =
-This shortcode returns the string 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.'
+This shortcode returns the string 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.'. The text is prepended by '* ' (the same string as the [currency] append string), which can be changed using the 'prepend' attribute.
+
+For example: [currency_legal prepend='Please note: ']
+
+The legal string can also be retrieved in PHP using `echo EuroFxRef::legal_string( 'optional prepend string' )`
 
 = currency shortcode =
 
