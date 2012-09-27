@@ -1,10 +1,10 @@
 <?php
 /*
-  Plugin Name: Euro foreign exchange reference rates converter
-  Plugin URI: http://dekeijzer.org/
-  Description: Shortcode(s) to convert currencies based on the ECB reference exchange rates. It adds a [currency] and [currency_legal] shortcode to WordPress.
-  Author: joostdekeijzer
+  Plugin Name: Euro FxRef Currency Converter
+  Plugin URI: https://github.com/joostdekeijzer/wp_eurofxref
+  Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates.
   Version: 1.0
+  Author: joostdekeijzer
   Author URI: http://dekeijzer.org/
  */
 /*
