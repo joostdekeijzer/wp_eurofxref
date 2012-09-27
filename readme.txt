@@ -8,20 +8,22 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Shortcode(s) to convert currencies based on the ECB reference exchange rates. It adds a [currency] and [currency_legal] shortcode to WordPress.
+Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates.
 
 == Description ==
 
 Using the [currency] shortcode you can convert one currency to another. The conversion is based on the rates published by the ECB which are changed daily (around 3am).
 
-This plugin is based on the Xclamation Currency Converter Shortcode plugin.
-See http://www.xclamationdesign.co.uk/free-currency-converter-shortcode-plugin-for-wordpress/
-for more information.
+You can change from and to any of the supported currencies.
+
+The [currency_legal] shortcode outputs a disclaimer text and a link to the ECB eurofxref page.
+
+This plugin is based on the Xclamation Currency Converter Shortcode plugin which can be found at http://www.xclamationdesign.co.uk/free-currency-converter-shortcode-plugin-for-wordpress/ .
 
 == Installation ==
 
 * Download the plugin
-* Uncompress it with your preferred unzip programme
+* Uncompress it with your preferred unzip application
 * Copy the entire directory in your plugin directory of your WordPress blog (/wp-content/plugins)
 * Activate the plugin
 * Use the [currency] shortcode in you texts!
@@ -50,6 +52,8 @@ This shortcode returns the string 'For informational purposes only. Exchange rat
       'cursor:help;border-bottom:1px dotted gray;'); styling of "to"
       text.
 
+Conversion from non-Euro to non-Euro is done through the Euro, so GBP to USD is calculated as GBP -> EUR -> USD.
+
 = Examples =
 * [currency amount="875" from="EUR" to="GBP"] 
   becomes "€ 875,= / £ 697.= *"
@@ -58,7 +62,7 @@ This shortcode returns the string 'For informational purposes only. Exchange rat
 * [currency amount="875" from="GBP" to="USD" show_from=false round=false] 
   becomes "$ 1,130.15 *"
 
-= Currenty available currencies =
+= Currently available currencies =
 
 See full list at http://www.ecb.europa.eu/stats/eurofxref/
 
@@ -98,7 +102,7 @@ See full list at http://www.ecb.europa.eu/stats/eurofxref/
 
 == Frequently Asked Questions ==
 
-= Where do the exchangerates come from? =
+= Where do the exchange rates come from? =
 The European Central Bank (ECB) daily publishes "foreign exchange reference rates" against more than 30 other currencies. These rates are used by this plugin.
 
 The rates are published for informational purposes only and exchange rates may vary.
