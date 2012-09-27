@@ -31,74 +31,80 @@ This plugin is based on the Xclamation Currency Converter Shortcode plugin which
 == Shortcode usage & examples ==
 
 = currency_legal shortcode =
-This shortcode returns the string 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.'
+This shortcode returns the string '* For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.'
+
+The prepended '* ' (the same string as the [currency] append string) can be changed using the 'prepend' attribute.
+
+For example: `[currency_legal prepend='Please note: ']`
+
+The legal string can also be retrieved in PHP using `<?php echo EuroFxRef::legal_string( 'optional prepend string' ) ?>`
 
 = currency shortcode =
 
-* from: currency code (default: EUR)
-* to: currency code (default: USD)
-* amount: number of "from" currency (default: 1)
-* iso: boolean (true or false, default false); use ISO currency
+* `from`: currency code (default: EUR)
+* `to`: currency code (default: USD)
+* `amount`: number of "from" currency (default: 1)
+* `iso`: boolean (true or false, default false); use ISO currency
       formatting
-* show_from: boolean (default true); show from amount in output
-* between: string (default '&nbsp;/&nbsp;' which is displayed as '
+* `show_from`: boolean (default true); show from amount in output
+* `between`: string (default '&nbsp;/&nbsp;' which is displayed as '
       / ' in the browser); string between from and to amounts
-* append: string (default '&nbsp;*' which is displayed as ' *' in
+* `append`: string (default '&nbsp;*' which is displayed as ' *' in
       the browser); string put after conversion. The * references the
       disclaimer text, see [currency_legal] shortcode.
-* round: boolean (default true); Round numbers to whole units.
-* round_append: string (default '='); replaces decimals
-* to_style: css formatting text (default
+* `round: boolean` (default true); Round numbers to whole units.
+* `round_append`: string (default '='); replaces decimals
+* `to_style`: css formatting text (default
       'cursor:help;border-bottom:1px dotted gray;'); styling of "to"
       text.
 
 Conversion from non-Euro to non-Euro is done through the Euro, so GBP to USD is calculated as GBP -> EUR -> USD.
 
 = Examples =
-* [currency amount="875" from="EUR" to="GBP"] 
+* `[currency amount="875" from="EUR" to="GBP"]` 
   becomes "€ 875,= / £ 697.= *"
-* [currency amount="875" from="GBP" to="USD" iso=true between=" converts to " append="" round_append=""] 
+* `[currency amount="875" from="GBP" to="USD" iso=true between=" converts to " append="" round_append=""]` 
   becomes "875 GBP converts to 1,418 USD"
-* [currency amount="875" from="GBP" to="USD" show_from=false round=false] 
+* `[currency amount="875" from="GBP" to="USD" show_from=false round=false]` 
   becomes "$ 1,130.15 *"
 
 = Currently available currencies =
 
 See full list at http://www.ecb.europa.eu/stats/eurofxref/
 
-* USD    US dollar
-* JPY    Japanese yen
-* BGN    Bulgarian lev
-* CZK    Czech koruna
-* DKK    Danish krone
-* GBP    Pound sterling
-* HUF    Hungarian forint
-* LTL    Lithuanian litas
-* LVL    Latvian lats
-* PLN    Polish zloty
-* RON    New Romanian leu
-* SEK    Swedish krona
-* CHF    Swiss franc
-* NOK    Norwegian krone
-* HRK    Croatian kuna
-* RUB    Russian rouble
-* TRY    Turkish lira
-* AUD    Australian dollar
-* BRL    Brasilian real
-* CAD    Canadian dollar
-* CNY    Chinese yuan renminbi
-* HKD    Hong Kong dollar
-* IDR    Indonesian rupiah
-* ILS    Israeli shekel
-* INR    Indian rupee
-* KRW    South Korean won
-* MXN    Mexican peso
-* MYR    Malaysian ringgit
-* NZD    New Zealand dollar
-* PHP    Philippine peso
-* SGD    Singapore dollar
-* THB    Thai baht
-* ZAR    South African rand
+* `USD`    US dollar
+* `JPY`    Japanese yen
+* `BGN`    Bulgarian lev
+* `CZK`    Czech koruna
+* `DKK`    Danish krone
+* `GBP`    Pound sterling
+* `HUF`    Hungarian forint
+* `LTL`    Lithuanian litas
+* `LVL`    Latvian lats
+* `PLN`    Polish zloty
+* `RON`    New Romanian leu
+* `SEK`    Swedish krona
+* `CHF`    Swiss franc
+* `NOK`    Norwegian krone
+* `HRK`    Croatian kuna
+* `RUB`    Russian rouble
+* `TRY`    Turkish lira
+* `AUD`    Australian dollar
+* `BRL`    Brasilian real
+* `CAD`    Canadian dollar
+* `CNY`    Chinese yuan renminbi
+* `HKD`    Hong Kong dollar
+* `IDR`    Indonesian rupiah
+* `ILS`    Israeli shekel
+* `INR`    Indian rupee
+* `KRW`    South Korean won
+* `MXN`    Mexican peso
+* `MYR`    Malaysian ringgit
+* `NZD`    New Zealand dollar
+* `PHP`    Philippine peso
+* `SGD`    Singapore dollar
+* `THB`    Thai baht
+* `ZAR`    South African rand
 
 == Frequently Asked Questions ==
 
