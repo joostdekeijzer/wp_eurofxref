@@ -1,4 +1,4 @@
-=== Euro foreign exchange reference rates converter Shortcode ===
+=== Euro FxRef Currency Converter ===
 Contributors: joostdekeijzer
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joost@dekeijzer.org&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
