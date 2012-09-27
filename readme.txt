@@ -12,7 +12,7 @@ Adds the [currency] and [currency_legal] shortcodes to convert currencies based 
 
 == Description ==
 
-Using the [currency] shortcode you can convert one currency to another. The conversion is based on the rates published by the ECB (updated daily around 3am CET).
+Using the [currency] shortcode you can convert one currency to another. The conversion is based on the rates published by the ECB (updated daily between 2.15 p.m. and 3.00 p.m. CET).
 
 You can change from and to any of the supported currencies.
 
