@@ -27,6 +27,7 @@ class EuroFxRef {
 
 		// for testing
 		//delete_transient( $transient_label );
+
 		$this->euroFxRef = get_transient( $transient_label );
 		if( false == $this->euroFxRef ) {
 			$this->_loadEuroFxRef( $transient_label );
@@ -120,11 +121,26 @@ class EuroFxRef {
 		$this->euroFxRef = array();
 		if( !is_wp_error( $response ) ) {
 			$fxRefXml = simplexml_load_string( $response['body'] );
-			
+
+			$fxRefDateString = (string) $fxRefXml->Cube->Cube['time'];
+
 			foreach($fxRefXml->Cube->Cube->Cube as $rate) {
 				$this->euroFxRef[(string)$rate['currency']] = (float)$rate['rate'];
 			}
-			set_transient( $transient_label, $this->euroFxRef, 60 * 60 * 12 );
+
+			/**
+			 * Calculate transient expiration to try update around 3.00 p.m. (15h00) daily
+			 * with a minimum of 15 minutes and a maximum of 6 hours.
+			 * 
+			 * All calculated in Seconds since the Unix Epoch to support PHP 5.2
+			 */
+			$pubEpoch = date_format( new DateTime( $fxRefDateString, new DateTimeZone('CET') ), 'U' );
+			$pubEpoch += 60 * 60 * 15; // add 15h for actual publication date
+			$pubEpoch += 60 * 60 * 24; // add 24h for NEXT publication date
+
+			$transient_expiration = min( 60 * 60 * 6, max( 60 * 15, $pubEpoch - current_time('timestamp', true) ) );
+
+			set_transient( $transient_label, $this->euroFxRef, $transient_expiration );
 		}
 	}
 
