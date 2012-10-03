@@ -115,10 +115,6 @@ The rates are published for informational purposes only and exchange rates may v
 
 See http://www.ecb.europa.eu/stats/eurofxref/ for more information.
 
-== Screenshots ==
-
-== Upgrade Notice ==
-
 == Changelog ==
 
 = 1.0 =
