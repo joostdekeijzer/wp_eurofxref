@@ -34,6 +34,8 @@ class EuroFxRef {
 		}
 		add_shortcode( 'currency', array( $this, 'currency_converter' ) );
 		add_shortcode( 'currency_legal', array( $this, 'legal_string' ) );
+
+		add_action( 'admin_head', array( $this, 'insert_help_tab' )  );
 	}
 
 	static function legal_string( $atts ) {
@@ -108,6 +110,38 @@ class EuroFxRef {
 			$output = "<span style='$to_style' title='1 $from = $cOne $to'>" . $output . '</span>' . $append;
 		}
 		return $output;
+	}
+
+
+	function insert_help_tab() {
+		global $post_type;
+		$screen = get_current_screen();
+		if( 'post' != $screen->base || !post_type_supports($post_type, 'editor') ) return;
+	
+		$id = __CLASS__ . '_help_id';
+		$title = __( "Using the [currency] shortcodes", __CLASS__ );
+		$help = <<<EOH
+<p><strong>currency</strong> shortcode examples:<br/>
+	<code>[currency from="EUR" to="GBP" amount="10"]</code><br/>
+	<code>[currency from="JPY" to="CHF" amount="750"]</code></p>
+<p>Full example with default values:<br/>
+	<code>[currency from="EUR" to="USD" amount="1" iso=false show_from=true between="&amp;nbsp;/&amp;nbsp;" append="&amp;nbsp;*" round=true round_append="=" to_style="cursor:help;border-bottom:1px dotted gray;"]</code></p>
+
+<p><strong>currency_legal</strong> shortcode examples:<br/>
+	<code>[currency_legal]</code><br/>
+	<code>[currency_legal prepend='* ']</code> (full example with default value)</p>
+<p>The legal text is:<br/>
+	'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.'</p>
+
+<p><strong>Need more help?</strong><br/>
+	Please visit <a href="http://wordpress.org/extend/plugins/euro-fxref-currency-converter/other_notes/" target="_blank">http://wordpress.org/extend/plugins/euro-fxref-currency-converter/other_notes/</a> for more examples and a full list of supported currencies.</p>
+EOH;
+
+		$screen->add_help_tab( array(
+			'id' => $id,
+			'title' => $title,
+			'content' => $help,
+		) );
 	}
 
 	private function _loadEuroFxRef( $transient_label ) {
