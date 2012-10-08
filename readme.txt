@@ -18,7 +18,9 @@ You can change from and to any of the supported currencies.
 
 The [currency_legal] shortcode outputs a disclaimer text and a link to the ECB eurofxref page.
 
-This plugin is based on the Xclamation Currency Converter Shortcode plugin which can be found at http://www.xclamationdesign.co.uk/free-currency-converter-shortcode-plugin-for-wordpress/ .
+This plugin is based on a plugin by [Xclamation](http://www.xclamationdesign.co.uk/free-currency-converter-shortcode-plugin-for-wordpress/).
+
+Also see https://github.com/joostdekeijzer/wp_eurofxref
 
 == Installation ==
 
