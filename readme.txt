@@ -47,9 +47,9 @@ The legal string can also be retrieved in PHP using `<?php echo EuroFxRef::legal
 * `iso`: boolean (true or false, default false); use ISO currency
       formatting
 * `show_from`: boolean (default true); show from amount in output
-* `between`: string (default '&nbsp;/&nbsp;' which is displayed as '
-      / ' in the browser); string between from and to amounts
-* `append`: string (default '&nbsp;*' which is displayed as ' *' in
+* `between`: string (default '&amp;nbsp;/&amp;nbsp;' which is displayed as 
+      '&nbsp;/&nbsp;' in the browser); string between from and to amounts
+* `append`: string (default '&amp;nbsp;*' which is displayed as '&nbsp;*' in
       the browser); string put after conversion. The * references the
       disclaimer text, see [currency_legal] shortcode.
 * `round: boolean` (default true); Round numbers to whole units.
