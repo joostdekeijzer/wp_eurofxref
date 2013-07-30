@@ -136,7 +136,7 @@ class EuroFxRef {
 	'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.'</p>
 
 <p><strong>Need more help?</strong><br/>
-	Please visit <a href="http://wordpress.org/extend/plugins/euro-fxref-currency-converter/other_notes/" target="_blank">http://wordpress.org/extend/plugins/euro-fxref-currency-converter/other_notes/</a> for more examples and a full list of supported currencies.</p>
+	Please visit <a href="http://wordpress.org/plugins/euro-fxref-currency-converter/other_notes/" target="_blank">http://wordpress.org/plugins/euro-fxref-currency-converter/other_notes/</a> for more examples and a full list of supported currencies.</p>
 EOH;
 
 		$screen->add_help_tab( array(
