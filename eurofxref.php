@@ -6,6 +6,8 @@
   Version: 1.1
   Author: joostdekeijzer
   Author URI: http://dekeijzer.org/
+  License: GPLv2 or later
+  License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
 /*
   Development code at https://github.com/joostdekeijzer/wp_eurofxref
@@ -43,9 +45,7 @@ class EuroFxRef {
 	static function legal_string( $atts ) {
 		$prepend = '* ';
 
-		if( is_string( $atts ) ) {
-			$prepend = $atts;
-		} else if( is_array( $atts ) && isset( $atts['prepend'] ) ) {
+		if( is_array( $atts ) && isset( $atts['prepend'] ) ) {
 			$prepend = $atts['prepend'];
 		}
 		return $prepend . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.', __CLASS__ );

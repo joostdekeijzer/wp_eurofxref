@@ -3,6 +3,8 @@
  * copied from xclam_currency_converter
  *
  * also see http://www.ecb.europa.eu/stats/exchange/eurofxref/html/index.en.html
+ *
+ * License: GPLv2 or later
  */
 $currency['EUR'] = '&euro;';
 
