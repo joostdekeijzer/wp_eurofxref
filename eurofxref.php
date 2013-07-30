@@ -147,7 +147,7 @@ EOH;
 	}
 
 	private function _loadEuroFxRef( $transient_label ) {
-		//This is aPHP(5)script example on how eurofxref-daily.xml can be parsed
+		//This is a PHP(5)script example on how eurofxref-daily.xml can be parsed
 		//the file is updated daily between 2.15 p.m. and 3.00 p.m. CET
 		
 		//Read eurofxref-daily.xml file in memory
