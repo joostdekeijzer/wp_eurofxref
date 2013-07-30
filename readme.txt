@@ -83,7 +83,7 @@ Conversion from non-Euro to non-Euro is done through the Euro, so GBP to USD is 
 * `LTL`    Lithuanian Litas (Lt)
 * `LVL`    Latvian Lats (Ls)
 * `PLN`    Polish Zloty (z&#322;)
-* `RON`    New Romanian Leu ()RON
+* `RON`    New Romanian Leu (RON)
 * `SEK`    Swedish Krona (kr)
 * `CHF`    Swiss Franc (CHF)
 * `NOK`    Norwegian Krone (kr)
