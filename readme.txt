@@ -3,8 +3,8 @@ Contributors: joostdekeijzer
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joost@dekeijzer.org&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
-Tested up to:  3.4
-Stable tag: 1.1
+Tested up to:  3.6
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,11 @@ The rates are published for informational purposes only and exchange rates may v
 See http://www.ecb.europa.eu/stats/eurofxref/ for more information.
 
 == Changelog ==
+
+= 1.2 =
+* bugfix where [currency_legal] default prepend "* " would not be added
+* updated plugin uri to new WordPress.org uri scheme
+* all currency symbols should be correct now (some in unicode)
 
 = 1.1 =
 * added help text to edit pages
