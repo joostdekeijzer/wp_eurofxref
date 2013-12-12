@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joost
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
 Tested up to:  3.8
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -117,6 +117,9 @@ The rates are published for informational purposes only and exchange rates may v
 See http://www.ecb.europa.eu/stats/eurofxref/ for more information.
 
 == Changelog ==
+
+= 1.2.1 =
+* Compatible with WordPress 3.8
 
 = 1.2 =
 * bugfix where [currency_legal] default prepend "* " would not be added
