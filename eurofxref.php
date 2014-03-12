@@ -47,7 +47,7 @@ class EuroFxRef {
 		return $prepend . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.', __CLASS__ );
 	}
 
-	public static function convert( $amount = 0, $from = '', $to = '' ) {
+	public static function convert( $amount = 0, $from = 'EUR', $to = 'USD' ) {
 		$from = strtoupper($from);
 		$to   = strtoupper($to);
 		if( ( 'EUR' != $from && null === self::getEuroFxRef($from) ) || ( 'EUR' != $to && null === self::getEuroFxRef($to) ) )
