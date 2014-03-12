@@ -3,7 +3,7 @@ Contributors: joostdekeijzer
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joost@dekeijzer.org&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
-Tested up to:  3.8
+Tested up to:  3.8.1
 Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -39,7 +39,21 @@ The prepended '* ' (the same string as the [currency] append string) can be chan
 
 For example: `[currency_legal prepend='Please note: ']`
 
-The legal string can also be retrieved in PHP using `<?php echo EuroFxRef::legal_string( 'optional prepend string' ) ?>`
+**`legal_string` method**
+
+The legal string can also be retrieved in PHP
+
+*Usage*
+
+`<?php echo EuroFxRef::legal_string( $prepend ) ?>`
+
+*Parameters*
+
+* $prepend (string) The string to prepend the legal text with, default '* '
+
+*Return Value*
+
+(string) Legal text prepended with $prepend string.
 
 = currency shortcode =
 
@@ -62,6 +76,24 @@ The legal string can also be retrieved in PHP using `<?php echo EuroFxRef::legal
 
 Conversion from non-Euro to non-Euro is done through the Euro, so GBP to USD is calculated as GBP -> EUR -> USD.
 
+**`convert` method**
+
+Since v1.3, you can call the convertor staticly from PHP in your code.
+
+*Usage*
+
+`<?php EuroFxRef::convert( $amount, $from, $to ); ?>`
+
+*Parameters*
+
+* $amount (float) The amount of currency you want to convert.
+* $from (string) The currency code the amount is in, default EUR.
+* $to (string) The currency code the amount must be converted to, default USD
+
+*Return Value*
+
+(float) the converted value or 0 (zero) if any of the currency code's are not available.
+
 = Examples =
 * `[currency amount="875" from="EUR" to="GBP"]` 
   becomes "€ 875,= / £ 697.= *"
@@ -69,6 +101,9 @@ Conversion from non-Euro to non-Euro is done through the Euro, so GBP to USD is 
   becomes "875 GBP converts to 1,418 USD"
 * `[currency amount="875" from="GBP" to="USD" show_from=false round=false]` 
   becomes "$ 1,130.15 *"
+
+* `<?php $process_later = EuroFxRef::convert( 10, 'USD', 'GBP' ); ?>`
+  will return the raw numeric (float) value without formatting: `6.01877256317689468545495401485823094844818115234375`
 
 = Currently available currencies =
 
@@ -117,6 +152,10 @@ The rates are published for informational purposes only and exchange rates may v
 See http://www.ecb.europa.eu/stats/eurofxref/ for more information.
 
 == Changelog ==
+
+= 1.3 =
+* Rewrite, so now you can call the convertor staticly from PHP
+* Compatible with WordPress 3.8.1
 
 = 1.2.1 =
 * Compatible with WordPress 3.8
