@@ -23,26 +23,22 @@ if ( !function_exists( 'add_action' ) ) {
 }
 
 class EuroFxRef {
-	var $euroFxRef;
-	var $space = '&nbsp;';
+	static protected $euroFxRef;
+	const TRANSIENT_LABEL = 'EuroFxRefRates';
 
-	function __construct() {
-		$transient_label = __CLASS__ . 'Rates';
+	public $space = '&nbsp;';
 
+	public function __construct() {
 		// for testing
-		//delete_transient( $transient_label );
+		//delete_transient( self::TRANSIENT_LABEL );
 
-		$this->euroFxRef = get_transient( $transient_label );
-		if( false == $this->euroFxRef ) {
-			$this->_loadEuroFxRef( $transient_label );
-		}
 		add_shortcode( 'currency', array( $this, 'currency_converter' ) );
 		add_shortcode( 'currency_legal', array( $this, 'legal_string' ) );
 
 		add_action( 'admin_head', array( $this, 'insert_help_tab' )  );
 	}
 
-	static function legal_string( $atts ) {
+	public static function legal_string( $atts ) {
 		$prepend = '* ';
 
 		if( is_array( $atts ) && isset( $atts['prepend'] ) ) {
@@ -51,7 +47,28 @@ class EuroFxRef {
 		return $prepend . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.', __CLASS__ );
 	}
 
-	function currency_converter( $atts ) {
+	public static function convert( $amount = 0, $from = '', $to = '' ) {
+		$from = strtoupper($from);
+		$to   = strtoupper($to);
+		if( ( 'EUR' != $from && null === self::getEuroFxRef($from) ) || ( 'EUR' != $to && null === self::getEuroFxRef($to) ) )
+			return 0;
+
+		if( 'EUR' != $from && 'EUR' != $to ) {
+			// normalize on Euro
+			$amount = self::convert( $amount, $from, 'EUR' );
+			$from = 'EUR';
+		}
+
+		if( 'EUR' == $from ) {
+			// from Euro to ...
+			return $amount * self::getEuroFxRef($to);
+		} else {
+			// from ... to Euro
+			return $amount / self::getEuroFxRef($from);
+		}
+	}
+
+	public function currency_converter( $atts ) {
 		extract( shortcode_atts( array(
 			'amount' => '1',
 			'from' => 'EUR',
@@ -80,7 +97,7 @@ class EuroFxRef {
 			$iso = true;
 		}
 
-		$cAmount = $this->_convert( $amount, strtoupper( $from ), strtoupper( $to ) );
+		$cAmount = self::convert( $amount, $from, $to );
 		if( $cAmount > 0 ) {
 			$cAmount = number_format( $cAmount, ( $round ? 0 : 2 ), $number_format[$to]['dp'], $number_format[$to]['ts'] );
 			if( $round && '' != $round_append ) $cAmount .= $number_format[$to]['dp'] . $round_append;
@@ -108,14 +125,13 @@ class EuroFxRef {
 			} else {
 				$output = $currency[$to] . $s . $cAmount;
 			}
-			$cOne = number_format( $this->_convert( 1, strtoupper( $from ), strtoupper( $to ) ), 4, $number_format[$to]['dp'], $number_format[$to]['ts'] );
+			$cOne = number_format( self::convert( 1, strtoupper( $from ), strtoupper( $to ) ), 4, $number_format[$to]['dp'], $number_format[$to]['ts'] );
 			$output = "<span style='$to_style' title='1 $from = $cOne $to'>" . $output . '</span>' . $append;
 		}
 		return $output;
 	}
 
-
-	function insert_help_tab() {
+	public function insert_help_tab() {
 		global $post_type;
 		$screen = get_current_screen();
 		if( 'post' != $screen->base || !post_type_supports($post_type, 'editor') ) return;
@@ -146,56 +162,51 @@ EOH;
 		) );
 	}
 
-	private function _loadEuroFxRef( $transient_label ) {
-		//This is a PHP(5)script example on how eurofxref-daily.xml can be parsed
-		//the file is updated daily between 2.15 p.m. and 3.00 p.m. CET
+	protected static function getEuroFxRef( $currency = null ) {
+		if( !isset(self::$euroFxRef) || false == self::$euroFxRef || 0 == count(self::$euroFxRef) ) {
+			self::$euroFxRef = get_transient( self::TRANSIENT_LABEL );
+			if( false == self::$euroFxRef || 0 == count(self::$euroFxRef) ) {
+				//This is a PHP(5)script example on how eurofxref-daily.xml can be parsed
+				//the file is updated daily between 2.15 p.m. and 3.00 p.m. CET
 		
-		//Read eurofxref-daily.xml file in memory
-		//For the next command you will need the config option allow_url_fopen=On (default)
-		$response = wp_remote_get('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
+				//Read eurofxref-daily.xml file in memory
+				//For the next command you will need the config option allow_url_fopen=On (default)
+				$response = wp_remote_get('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
 
-		$this->euroFxRef = array();
-		if( !is_wp_error( $response ) ) {
-			$fxRefXml = simplexml_load_string( $response['body'] );
+				self::$euroFxRef = array();
+				if( !is_wp_error( $response ) ) {
+					$fxRefXml = simplexml_load_string( $response['body'] );
 
-			$fxRefDateString = (string) $fxRefXml->Cube->Cube['time'];
+					$fxRefDateString = (string) $fxRefXml->Cube->Cube['time'];
 
-			foreach($fxRefXml->Cube->Cube->Cube as $rate) {
-				$this->euroFxRef[(string)$rate['currency']] = (float)$rate['rate'];
+					foreach($fxRefXml->Cube->Cube->Cube as $rate) {
+						self::$euroFxRef[(string)$rate['currency']] = (float)$rate['rate'];
+					}
+
+					/**
+					 * Calculate transient expiration to try update around 3.00 p.m. (15h00) daily
+					 * with a minimum of 15 minutes and a maximum of 6 hours.
+					 * 
+					 * All calculated in Seconds since the Unix Epoch to support PHP 5.2
+					 */
+					$pubEpoch = date_format( new DateTime( $fxRefDateString, new DateTimeZone('CET') ), 'U' );
+					$pubEpoch += 60 * 60 * 15; // add 15h for actual publication date
+					$pubEpoch += 60 * 60 * 24; // add 24h for NEXT publication date
+
+					$transient_expiration = min( 60 * 60 * 6, max( 60 * 15, $pubEpoch - current_time('timestamp', true) ) );
+
+					set_transient( self::TRANSIENT_LABEL, self::$euroFxRef, $transient_expiration );
+				}
 			}
-
-			/**
-			 * Calculate transient expiration to try update around 3.00 p.m. (15h00) daily
-			 * with a minimum of 15 minutes and a maximum of 6 hours.
-			 * 
-			 * All calculated in Seconds since the Unix Epoch to support PHP 5.2
-			 */
-			$pubEpoch = date_format( new DateTime( $fxRefDateString, new DateTimeZone('CET') ), 'U' );
-			$pubEpoch += 60 * 60 * 15; // add 15h for actual publication date
-			$pubEpoch += 60 * 60 * 24; // add 24h for NEXT publication date
-
-			$transient_expiration = min( 60 * 60 * 6, max( 60 * 15, $pubEpoch - current_time('timestamp', true) ) );
-
-			set_transient( $transient_label, $this->euroFxRef, $transient_expiration );
 		}
-	}
-
-	private function _convert( $amount, $from, $to ) {
-		if( ( 'EUR' != $from && !isset( $this->euroFxRef[$from] ) ) || ( 'EUR' != $to && !isset( $this->euroFxRef[$to] ) ) )
-			return 0;
-
-		if( 'EUR' != $from && 'EUR' != $to ) {
-			// normalize on Euro
-			$amount = $this->_convert( $amount, $from, 'EUR' );
-			$from = 'EUR';
-		}
-
-		if( 'EUR' == $from ) {
-			// from Euro to ...
-			return $amount * $this->euroFxRef[$to];
+		if( isset($currency) ) {
+			if( isset( self::$euroFxRef[$currency] ) ) {
+				return self::$euroFxRef[$currency];
+			} else {
+				return null;
+			}
 		} else {
-			// from ... to Euro
-			return $amount / $this->euroFxRef[$from];
+			return self::$euroFxRef;
 		}
 	}
 
