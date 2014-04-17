@@ -3,8 +3,8 @@ Contributors: joostdekeijzer
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joost@dekeijzer.org&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
-Tested up to:  3.8.1
-Stable tag: 1.2.1
+Tested up to:  3.9
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -155,7 +155,7 @@ See http://www.ecb.europa.eu/stats/eurofxref/ for more information.
 
 = 1.3 =
 * Rewrite, so now you can call the convertor staticly from PHP
-* Compatible with WordPress 3.8.1
+* Compatible with WordPress 3.9
 
 = 1.2.1 =
 * Compatible with WordPress 3.8
