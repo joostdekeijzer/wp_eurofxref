@@ -3,7 +3,7 @@
   Plugin Name: Euro FxRef Currency Converter
   Plugin URI: http://wordpress.org/plugins/euro-fxref-currency-converter/
   Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates.
-  Version: 1.3.0
+  Version: 1.4.0
   Author: joostdekeijzer
   Author URI: http://dekeijzer.org/
   License: GPLv2 or later
@@ -163,19 +163,24 @@ EOH;
 	}
 
 	protected static function getEuroFxRef( $currency = null ) {
+		global $wp_version;
 		if( !isset(self::$euroFxRef) || false == self::$euroFxRef || 0 == count(self::$euroFxRef) ) {
 			self::$euroFxRef = get_transient( self::TRANSIENT_LABEL );
 			if( false == self::$euroFxRef || 0 == count(self::$euroFxRef) ) {
 				//This is a PHP(5)script example on how eurofxref-daily.xml can be parsed
-				//the file is updated daily between 2.15 p.m. and 3.00 p.m. CET
+				//the file is updated daily at 16:00 CET
 		
 				//Read eurofxref-daily.xml file in memory
 				//For the next command you will need the config option allow_url_fopen=On (default)
-				$response = wp_remote_get('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
+				$response = wp_remote_get('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml', array('user-agent' => 'Euro FxRef Currency Converter plugin on WordPress/' . $wp_version . '; ' . home_url()));
 
 				self::$euroFxRef = array();
 				if( !is_wp_error( $response ) ) {
+					libxml_use_internal_errors(true);
 					$fxRefXml = simplexml_load_string( $response['body'] );
+					if ( libxml_get_errors() ) {
+						return null;
+					}
 
 					$fxRefDateString = (string) $fxRefXml->Cube->Cube['time'];
 
