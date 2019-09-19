@@ -1,20 +1,21 @@
 <?php
-/*
-  Plugin Name: Euro FxRef Currency Converter
-  Plugin URI: http://wordpress.org/plugins/euro-fxref-currency-converter/
-  Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates.
-  Version: 1.4.0
-  Author: joostdekeijzer
-  Author URI: http://dekeijzer.org/
-  License: GPLv2 or later
-  License URI: http://www.gnu.org/licenses/gpl-2.0.html
+/**
+ * Plugin Name: Euro FxRef Currency Converter
+ * Plugin URI: http://wordpress.org/plugins/euro-fxref-currency-converter/
+ * Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates.
+ * Version: 1.4.1
+ * Author: joostdekeijzer
+ * Author URI: https://dkzr.nl/
+ * License: GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
-/*
-  Development code at https://github.com/joostdekeijzer/wp_eurofxref
 
-  This plugin is based on the Xclamation Currency Converter Shortcode plugin.
-  See http://www.xclamationdesign.co.uk/free-currency-converter-shortcode-plugin-for-wordpress/
-  for more information.
+/**
+ * Development code at https://github.com/joostdekeijzer/wp_eurofxref
+ *
+ * This plugin is based on the Xclamation Currency Converter Shortcode plugin.
+ * See http://www.xclamationdesign.co.uk/free-currency-converter-shortcode-plugin-for-wordpress/
+ * for more information.
  */
 
 if ( !function_exists( 'add_action' ) ) {

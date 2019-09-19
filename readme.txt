@@ -1,10 +1,11 @@
 === Euro FxRef Currency Converter ===
 Contributors: joostdekeijzer
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joost@dekeijzer.org&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkzr.nl&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
-Tested up to: 5.0
-Stable tag: 1.4
+Tested up to: 5.2.3
+Stable tag: 1.4.1
+Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -152,6 +153,10 @@ The rates are published for informational purposes only and exchange rates may v
 See http://www.ecb.europa.eu/stats/eurofxref/ for more information.
 
 == Changelog ==
+
+= 1.4.1 =
+* Updated PayPal donation link
+* Compatible with WordPress 5.2.3
 
 = 1.4 =
 * ECB seems to block requests from user-agent WordPress/<version>, changed the user-agent string
