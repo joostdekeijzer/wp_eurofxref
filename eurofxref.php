@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Euro FxRef Currency Converter
- * Plugin URI: http://wordpress.org/plugins/euro-fxref-currency-converter/
+ * Plugin URI: https://wordpress.org/plugins/euro-fxref-currency-converter/
  * Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates.
  * Version: 1.4.1
  * Author: joostdekeijzer
