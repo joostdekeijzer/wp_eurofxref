@@ -8,41 +8,41 @@
  */
 $currency['EUR'] = '&euro;';
 
-$currency['USD'] = '$';			// US Dollar
-$currency['JPY'] = '&#165;';	// Japanese Yen
-$currency['BGN'] = 'ЛВ.';		// Bulgarian Lev
-$currency['CZK'] = 'K&#269;';	// Czech Republic Koruna
-$currency['DKK'] = 'kr';		// Danish Krone
-$currency['GBP'] = '&pound;';	// British Pound Sterling
-$currency['HUF'] = 'Ft';		// Hungarian Forint
-$currency['LTL'] = 'Lt';		// Lithuanian Litas
-$currency['LVL'] = 'Ls';		// Latvian Lats
-$currency['PLN'] = 'z&#322;';	// Polish Zloty
-$currency['RON'] = 'RON';		// New Romanian Leu
-$currency['SEK'] = 'kr';		// Swedish Krona
-$currency['CHF'] = 'CHF';		// Swiss Franc
-$currency['NOK'] = 'kr';		// Norwegian Krone
-$currency['HRK'] = 'kn';		// Croatian Kuna
-$currency['RUB'] = 'py6.';		// Russian Rouble
-$currency['TRY'] = 'TL';		// Turkish Lira
-$currency['AUD'] = '$';			// Australian Dollar
-$currency['BRL'] = 'R$';		// Brasilian Real
-$currency['CAD'] = '$';			// Canadian Dollar
+$currency['USD'] = '$';					// US Dollar
+$currency['JPY'] = '&#165;';		// Japanese Yen
+$currency['BGN'] = 'ЛВ.';				// Bulgarian Lev
+$currency['CZK'] = 'K&#269;';		// Czech Republic Koruna
+$currency['DKK'] = 'kr';				// Danish Krone
+$currency['GBP'] = '&pound;';		// British Pound Sterling
+$currency['HUF'] = 'Ft';				// Hungarian Forint
+$currency['PLN'] = 'z&#322;';		// Polish Zloty
+$currency['RON'] = 'RON';				// New Romanian Leu
+$currency['SEK'] = 'kr';				// Swedish Krona
+$currency['CHF'] = 'CHF';				// Swiss Franc
+$currency['ISK'] = 'kr';				// Icelandic krona
+$currency['NOK'] = 'kr';				// Norwegian Krone
+$currency['HRK'] = 'kn';				// Croatian Kuna
+$currency['RUB'] = 'py6.';			// Russian Rouble
+$currency['TRY'] = 'TL';				// Turkish Lira
+$currency['AUD'] = '$';					// Australian Dollar
+$currency['BRL'] = 'R$';				// Brasilian Real
+$currency['CAD'] = '$';					// Canadian Dollar
 $currency['CNY'] = '&#20803;';	// Chinese Yuan
-$currency['HKD'] = '$';			// Hong Kong Dollar
-$currency['IDR'] = 'Rp';		// Indonesian Rupiah
-$currency['ILS'] = '&#8362;';	// Israeli New Sheqel
-$currency['INR'] = '&#8377;';	// Indian Rupee - Rs &#8377; ₹
-$currency['KRW'] = '&#8361;';	// South Korean Won
-$currency['MXN'] = '$';			// Mexican Peso
-$currency['MYR'] = 'RM';		// Malaysian Ringgit
-$currency['NZD'] = '$';			// New Zealand Dollar
-$currency['PHP'] = '₱';			// Philippine Peso - P ₱
-$currency['SGD'] = '$';			// Singapore Dollar
-$currency['THB'] = '&#3647;';	// Thai Baht
-$currency['ZAR'] = 'R';			// South African Rand
+$currency['HKD'] = '$';					// Hong Kong Dollar
+$currency['IDR'] = 'Rp';				// Indonesian Rupiah
+$currency['ILS'] = '&#8362;';		// Israeli New Sheqel
+$currency['INR'] = '&#8377;';		// Indian Rupee - Rs &#8377; ₹
+$currency['KRW'] = '&#8361;';		// South Korean Won
+$currency['MXN'] = '$';					// Mexican Peso
+$currency['MYR'] = 'RM';				// Malaysian Ringgit
+$currency['NZD'] = '$';					// New Zealand Dollar
+$currency['PHP'] = '₱';					// Philippine Peso - P ₱
+$currency['SGD'] = '$';					// Singapore Dollar
+$currency['THB'] = '&#3647;';		// Thai Baht
+$currency['ZAR'] = 'R';					// South African Rand
 
-//$currency['ISK'] = 'kr';		// Icelandic krona - The last rate was published on 3 Dec 2008
+//$currency['LTL'] = 'Lt';			// Lithuanian Litas - not published on 2020-01-01
+//$currency['LVL'] = 'Ls';			// Latvian Lats - not published on 2020-01-01
 
 //$currency['EGP'] = '&pound;';
 //$currency['ARS'] = '$';
@@ -80,6 +80,7 @@ $number_format['PLN'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
 $number_format['RON'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
 $number_format['SEK'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
 $number_format['CHF'] = array( 'dp' => '.', 'ts' => '&rsquo;', 'after' => true );
+$number_format['ISK'] = array( 'dp' => '.', 'ts' => ',' );
 $number_format['NOK'] = array( 'dp' => ',', 'ts' => '&nbsp;' );
 $number_format['HRK'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
 $number_format['RUB'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
@@ -107,7 +108,6 @@ $number_format['ZAR'] = array( 'dp' => ',', 'ts' => '&nbsp;' );
 //$number_format['CLP'] = array( 'dp' => '.', 'ts' => ',' );
 //$number_format['XCD'] = array( 'dp' => '.', 'ts' => ',' );
 //$number_format['EEK'] = array( 'dp' => '.', 'ts' => ',' );
-//$number_format['ISK'] = array( 'dp' => '.', 'ts' => ',' );
 //$number_format['JMD'] = array( 'dp' => '.', 'ts' => ',' );
 //$number_format['LBP'] = array( 'dp' => '.', 'ts' => ',' );
 //$number_format['NAD'] = array( 'dp' => '.', 'ts' => ',' );
