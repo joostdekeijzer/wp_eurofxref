@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkz
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
 Tested up to: 5.3.2
-Stable tag: 1.4.2
+Stable tag: 1.5
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -116,12 +116,11 @@ Since v1.3, you can call the convertor staticly from PHP in your code.
 * `DKK`    Danish Krone (kr)
 * `GBP`    British Pound Sterling (&pound;)
 * `HUF`    Hungarian Forint (Ft)
-* `LTL`    Lithuanian Litas (Lt)
-* `LVL`    Latvian Lats (Ls)
 * `PLN`    Polish Zloty (z&#322;)
 * `RON`    New Romanian Leu (RON)
 * `SEK`    Swedish Krona (kr)
 * `CHF`    Swiss Franc (CHF)
+* `ISK`    Icelandic krona (kr)
 * `NOK`    Norwegian Krone (kr)
 * `HRK`    Croatian Kuna (kn)
 * `RUB`    Russian Rouble (py6.)
@@ -143,6 +142,8 @@ Since v1.3, you can call the convertor staticly from PHP in your code.
 * `THB`    Thai Baht (&#3647;)
 * `ZAR`    South African Rand (R)
 
+LTL and LVL are not published any more at least since 1-jan-2020.
+
 == Frequently Asked Questions ==
 
 = Where do the exchange rates come from? =
@@ -153,6 +154,9 @@ The rates are published for informational purposes only and exchange rates may v
 See https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/ for more information.
 
 == Changelog ==
+
+= 1.5 =
+* ECB changed the currencies it publishes: ISK is published again but LTL and LVL were removed.
 
 = 1.4.2 =
 * Updated ECB url
