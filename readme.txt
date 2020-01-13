@@ -3,8 +3,8 @@ Contributors: joostdekeijzer
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkzr.nl&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
-Tested up to: 5.2.3
-Stable tag: 1.4.1
+Tested up to: 5.3.2
+Stable tag: 1.4.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -34,7 +34,7 @@ Also see https://github.com/joostdekeijzer/wp_eurofxref
 == Shortcode usage & examples ==
 
 = currency_legal shortcode =
-This shortcode returns the string '* For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.'
+This shortcode returns the string '* For informational purposes only. Exchange rates may vary. Based on <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank">ECB reference rates</a>.'
 
 The prepended '* ' (the same string as the [currency] append string) can be changed using the 'prepend' attribute.
 
@@ -150,9 +150,14 @@ The European Central Bank (ECB) daily publishes "foreign exchange reference rate
 
 The rates are published for informational purposes only and exchange rates may vary.
 
-See http://www.ecb.europa.eu/stats/eurofxref/ for more information.
+See https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/ for more information.
 
 == Changelog ==
+
+= 1.4.2 =
+* Updated ECB url
+* Updated all links to https
+* Compatible with WordPress 5.3.2
 
 = 1.4.1 =
 * Updated PayPal donation link

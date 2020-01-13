@@ -3,7 +3,7 @@
  * Plugin Name: Euro FxRef Currency Converter
  * Plugin URI: https://wordpress.org/plugins/euro-fxref-currency-converter/
  * Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates.
- * Version: 1.4.1
+ * Version: 1.4.2
  * Author: joostdekeijzer
  * Author URI: https://dkzr.nl/
  * License: GPLv2 or later
@@ -45,7 +45,7 @@ class EuroFxRef {
 		if( is_array( $atts ) && isset( $atts['prepend'] ) ) {
 			$prepend = $atts['prepend'];
 		}
-		return $prepend . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.', __CLASS__ );
+		return $prepend . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank">ECB reference rates</a>.', __CLASS__ );
 	}
 
 	public static function convert( $amount = 0, $from = 'EUR', $to = 'USD' ) {
@@ -150,10 +150,10 @@ class EuroFxRef {
 	<code>[currency_legal]</code><br/>
 	<code>[currency_legal prepend='* ']</code> (full example with default value)</p>
 <p>The legal text is:<br/>
-	'For informational purposes only. Exchange rates may vary. Based on <a href="http://www.ecb.europa.eu/stats/eurofxref/" target="_blank">ECB reference rates</a>.'</p>
+	'For informational purposes only. Exchange rates may vary. Based on <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank">ECB reference rates</a>.'</p>
 
 <p><strong>Need more help?</strong><br/>
-	Please visit <a href="http://wordpress.org/plugins/euro-fxref-currency-converter/other_notes/" target="_blank">http://wordpress.org/plugins/euro-fxref-currency-converter/other_notes/</a> for more examples and a full list of supported currencies.</p>
+	Please visit <a href="https://wordpress.org/plugins/euro-fxref-currency-converter/" target="_blank">https://wordpress.org/plugins/euro-fxref-currency-converter/</a> for more examples and a full list of supported currencies.</p>
 EOH;
 
 		$screen->add_help_tab( array(
@@ -173,7 +173,7 @@ EOH;
 		
 				//Read eurofxref-daily.xml file in memory
 				//For the next command you will need the config option allow_url_fopen=On (default)
-				$response = wp_remote_get('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml', array('user-agent' => 'Euro FxRef Currency Converter plugin on WordPress/' . $wp_version . '; ' . home_url()));
+				$response = wp_remote_get('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml', array('user-agent' => 'Euro FxRef Currency Converter plugin on WordPress/' . $wp_version . '; ' . home_url()));
 
 				self::$euroFxRef = array();
 				if( !is_wp_error( $response ) ) {
