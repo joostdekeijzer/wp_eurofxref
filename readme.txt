@@ -1,6 +1,6 @@
 === Euro FxRef Currency Converter ===
 Contributors: joostdekeijzer
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkzr.nl&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkzr.nl&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR&amount=10
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
 Tested up to: 6.2
