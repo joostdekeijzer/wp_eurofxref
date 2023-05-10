@@ -53,22 +53,6 @@ For example: `[currency_legal prepend='Please note: ']`
 If you want to change the default prepent string for your whole site you can use the default `shortcode_atts_currency_legal` filter.
 See the [shortcode_atts_{&#36;shortcode} reference](http://developer.wordpress.org/reference/hooks/shortcode_atts_shortcode/) for more information about this.
 
-**`legal_string` method**
-
-The legal string can also be retrieved in PHP
-
-*Usage*
-
-`<?php echo EuroFxRef::legal_string( &#36;prepend ) ?>`
-
-*Parameters*
-
-* &#36;prepend (string) The string to prepend the legal text with, default '* '
-
-*Return Value*
-
-(string) Legal text prepended with &#36;prepend string.
-
 = currency shortcode =
 
 Attributes:
@@ -87,7 +71,33 @@ Attributes:
 
 If you want to change the defaults for your whole site you can use the default `shortcode_atts_currency` filter. See the [shortcode_atts_{&#36;shortcode} reference](http://developer.wordpress.org/reference/hooks/shortcode_atts_shortcode/) for more information about this.
 
-**`convert` method**
+= Examples =
+* `[currency amount="875" from="EUR" to="GBP"]` 
+  becomes "€ 875,= / £ 697.= *"
+* `[currency amount="875" from="GBP" to="USD" iso=true between=" converts to " append="" round_append=""]` 
+  becomes "875 GBP converts to 1,418 USD"
+* `[currency amount="875" from="GBP" to="USD" show_from=false round=false]` 
+  becomes "&#36; 1,130.15 *"
+
+== Static method usage & examples ==
+
+= `legal_string` method =
+
+The legal string can also be retrieved in PHP
+
+*Usage*
+
+`<?php echo EuroFxRef::legal_string( &#36;prepend ) ?>`
+
+*Parameters*
+
+* &#36;prepend (string) The string to prepend the legal text with, default '* '
+
+*Return Value*
+
+(string) Legal text prepended with &#36;prepend string.
+
+= `convert` method =
 
 Since v1.3, you can call the convertor staticly from PHP in your code.
 
@@ -106,17 +116,11 @@ Since v1.3, you can call the convertor staticly from PHP in your code.
 (float) the converted value or 0 (zero) if any of the currency code's are not available.
 
 = Examples =
-* `[currency amount="875" from="EUR" to="GBP"]` 
-  becomes "€ 875,= / £ 697.= *"
-* `[currency amount="875" from="GBP" to="USD" iso=true between=" converts to " append="" round_append=""]` 
-  becomes "875 GBP converts to 1,418 USD"
-* `[currency amount="875" from="GBP" to="USD" show_from=false round=false]` 
-  becomes "&#36; 1,130.15 *"
 
 * `<?php &#36;process_later = EuroFxRef::convert( 10, 'USD', 'GBP' ); ?>`
   will return the raw numeric (float) value without formatting: `6.01877256317689468545495401485823094844818115234375`
 
-= Currently available currencies =
+== Currently available currencies ==
 
 * `AUD` - Australian dollar (&#36;)
 * `BGN` - Bulgarian lev (&#1083;&#1074;.)
@@ -153,8 +157,6 @@ Since v1.3, you can call the convertor staticly from PHP in your code.
 LTL and LVL are not published any more at least since 2-jan-2020.  
 RUB is not published since 1-jun-2022 and HRK since 2-jan-2023.
 
-
-
 == Frequently Asked Questions ==
 
 = Where do the exchange rates come from? =
@@ -163,6 +165,25 @@ The European Central Bank (ECB) daily publishes "foreign exchange reference rate
 The rates are published for informational purposes only and exchange rates may vary.
 
 See the [ECB site](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/) for more information.
+
+= What styling options do I have? =
+
+When not showing the 'from' value the converted amount is wrapped with a &lt;span&gt; with css styling that is configurable using the 'to_style' attribute.
+
+Since v2.0 of the plugin additionaly the following classes are available to style using CSS:
+
+* 'eurofxref-conversion-rate' to overrule the 'to_style' attribute value of the `[currency]` shortcode.
+* 'eurofxref-append-string' on a &lt;span&gt; wrapping the ' *' text of the `[currency]` shortcode.
+* 'eurofxref-prepend-string' on a &lt;span&gt; wrapping the '* ' text of the `[currency_legal]` shortcode.
+
+= What filters are available? =
+
+Since v2.0 the following filters are available:
+
+* 'shortcode_atts_currency' to modify the `[currency]` shortcode attributes.
+* 'shortcode_atts_currency_legal' to modify the `[currency_legal]` shortcode attributes.
+* 'eurofxref_currency_symbols' to modify the currency symbols used in your site. The symbols are also run through the 'woocommerce_currency_symbols' filter so you don't need to use both.
+* 'eurofxref_number_formats' to modify the currency number formatting used in your site.
 
 == Changelog ==
 
@@ -173,6 +194,7 @@ See the [ECB site](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/eur
 * Refactor of currency symbols and number formats based on how WooCommerce does it.
 * Added filters to modify the currency symbols and the number formats: `eurofxref_currency_symbols` and `eurofxref_number_formats`.
 * The currency symbols are also run through the `woocommerce_currency_symbols` filter so if you have WooCommerce you don't need to use the `eurofxref_currency_symbols` filter.
+* Added styling options through classes for 'eurofxref-prepend-string', 'eurofxref-append-string' and 'eurofxref-conversion-rate'.
 
 = 1.5 =
 * ECB changed the currencies it publishes: ISK is published again but LTL and LVL were removed.
