@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Euro FxRef Currency Converter
  * Plugin URI: https://wordpress.org/plugins/euro-fxref-currency-converter/
- * Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates.
+ * Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates. Please visit https://wordpress.org/plugins/euro-fxref-currency-converter/ for help and options.
  * Version: 1.5.2
  * Author: Joost de Keijzer
  * Author URI: https://dkzr.nl/
@@ -53,10 +53,12 @@ class EuroFxRef {
 	}
 
 	public static function convert( $amount = 0, $from = 'EUR', $to = 'USD' ) {
-		$from = strtoupper($from);
-		$to   = strtoupper($to);
-		if( ( 'EUR' != $from && null === self::getEuroFxRef($from) ) || ( 'EUR' != $to && null === self::getEuroFxRef($to) ) )
+		$from = strtoupper( $from );
+		$to   = strtoupper( $to );
+
+		if( ( 'EUR' != $from && null === self::getEuroFxRef( $from ) ) || ( 'EUR' != $to && null === self::getEuroFxRef( $to ) ) ) {
 			return 0;
+		}
 
 		if( 'EUR' != $from && 'EUR' != $to ) {
 			// normalize on Euro
@@ -66,10 +68,10 @@ class EuroFxRef {
 
 		if( 'EUR' == $from ) {
 			// from Euro to ...
-			return $amount * self::getEuroFxRef($to);
+			return $amount * self::getEuroFxRef( $to );
 		} else {
 			// from ... to Euro
-			return $amount / self::getEuroFxRef($from);
+			return $amount / self::getEuroFxRef( $from );
 		}
 	}
 
@@ -268,8 +270,10 @@ EOH;
 
 	protected static function getEuroFxRef( $currency = null ) {
 		global $wp_version;
+
 		if( !isset(self::$euroFxRef) || false == self::$euroFxRef || 0 == count(self::$euroFxRef) ) {
 			self::$euroFxRef = get_transient( self::TRANSIENT_LABEL );
+
 			if( false == self::$euroFxRef || 0 == count(self::$euroFxRef) ) {
 				//This is a PHP(5)script example on how eurofxref-daily.xml can be parsed
 				//the file is updated daily at 16:00 CET
@@ -289,7 +293,7 @@ EOH;
 					$fxRefDateString = (string) $fxRefXml->Cube->Cube['time'];
 
 					foreach($fxRefXml->Cube->Cube->Cube as $rate) {
-						self::$euroFxRef[(string)$rate['currency']] = (float)$rate['rate'];
+						self::$euroFxRef[ (string) $rate['currency'] ] = (float) $rate['rate'];
 					}
 
 					/**
