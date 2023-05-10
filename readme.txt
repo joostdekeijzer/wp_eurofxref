@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkz
 Tags: shortcode, currency converter, currency, converter, foreign exchange conversion, fx rate converter, ECB
 Requires at least: 3.3
 Tested up to: 6.2
-Stable tag: 2.0
+Stable tag: 2.0.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -186,6 +186,9 @@ Since v2.0 the following filters are available:
 * 'eurofxref_number_formats' to modify the currency number formatting used in your site.
 
 == Changelog ==
+
+= 2.0.1 =
+* Bugfix when `[currency_legal]` is called without attributes.
 
 = 2.0 =
 * Added `no_from_show_rate` shortcode attribute for the `[convert]` shortcode.
