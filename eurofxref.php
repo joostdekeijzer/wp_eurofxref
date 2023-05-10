@@ -91,8 +91,8 @@ class EuroFxRef {
 			$$var = $this->_bool_from_string( $$var );
 		}
 
-		// load $currency and $number_format variables
-		include( dirname( __FILE__ ) . '/currency_symbols.php');
+		$currency = $this->get_currency_symbols();
+		$number_format = $this->get_number_formats();
 
 		if( !isset($currency[$from] ) || !isset($currency[$to] ) ) {
 			$currency[$from] = $currency[$to] = '';
@@ -163,6 +163,101 @@ EOH;
 			'title' => $title,
 			'content' => $help,
 		) );
+	}
+
+	/**
+	 * First copied from xclam_currency_converter, modified with WooCommerce `WooCommerce\Functions wc-core-functions.php` and `WooCommerce\i18n currency-info.php` input.
+	 *
+	 * @see https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html
+	 *
+	 * $symbols['LTL'] = 'Lt';       // Lithuanian Litas - not published since 2020-01-02
+	 * $symbols['LVL'] = 'Ls';       // Latvian Lats     - not published since 2020-01-02
+	 * $symbols['RUB'] = '&#8381;';  // Russian Rouble   - not published since 2022-06-01
+	 * $symbols['HRK'] = 'kn';       // Croatian Kuna    - not published since 2023-01-02
+	 */
+	public function get_currency_symbols() {
+		$symbols = apply_filters(
+			'eurofxref_currency_symbols',
+			array(
+				'AUD' => '&#36;',			// Australian dollar
+				'BGN' => '&#1083;&#1074;.',	// Bulgarian lev
+				'BRL' => '&#82;&#36;',		// Brazilian real
+				'CAD' => '&#36;',			// Canadian dollar
+				'CHF' => '&#67;&#72;&#70;',	// Swiss franc
+				'CNY' => '&yen;',			// Chinese yuan
+				'CZK' => '&#75;&#269;',		// Czech koruna
+				'DKK' => 'kr.',				// Danish krone
+				'EUR' => '&euro;',			// Euro
+				'GBP' => '&pound;',			// Pound sterling
+				'HKD' => '&#36;',			// Hong Kong dollar
+				'HUF' => '&#70;&#116;',		// Hungarian forint
+				'IDR' => 'Rp',				// Indonesian rupiah
+				'ILS' => '&#8362;',			// Israeli new shekel
+				'INR' => '&#8377;',			// Indian rupee
+				'ISK' => 'kr.',				// Icelandic króna
+				'JPY' => '&yen;',			// Japanese yen
+				'KRW' => '&#8361;',			// South Korean won
+				'MXN' => '&#36;',			// Mexican peso
+				'MYR' => '&#82;&#77;',		// Malaysian ringgit
+				'NOK' => '&#107;&#114;',	// Norwegian krone
+				'NZD' => '&#36;',			// New Zealand dollar
+				'PHP' => '&#8369;',			// Philippine peso
+				'PLN' => '&#122;&#322;',	// Polish złoty
+				'RON' => 'lei',				// Romanian leu
+				'SEK' => '&#107;&#114;',	// Swedish krona
+				'SGD' => '&#36;',			// Singapore dollar
+				'THB' => '&#3647;',			// Thai baht
+				'TRY' => '&#8378;',			// Turkish lira
+				'USD' => '&#36;',			// United States (US) dollar
+				'ZAR' => '&#82;',			// South African rand
+			)
+		);
+
+		return apply_filters( 'woocommerce_currency_symbols', $symbols );
+	}
+
+	/**
+	 * Copied from xclam_currency_converter
+	 */
+	public function get_number_formats() {
+		$formats = apply_filters(
+			'eurofxref_number_formats',
+			array(
+				'AUD' => array( 'dp' => '.', 'ts' => ',' );
+				'BGN' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
+				'BRL' => array( 'dp' => ',', 'ts' => '.' );
+				'CAD' => array( 'dp' => '.', 'ts' => ',' );
+				'CHF' => array( 'dp' => '.', 'ts' => '&rsquo;', 'after' => true );
+				'CNY' => array( 'dp' => '.', 'ts' => ',' );
+				'CZK' => array( 'dp' => '.', 'ts' => '&nbsp;', 'after' => true );
+				'DKK' => array( 'dp' => ',', 'ts' => '.', 'after' => true );
+				'EUR' => array( 'dp' => ',', 'ts' => '.' , 'after' => false );
+				'GBP' => array( 'dp' => '.', 'ts' => ',' );
+				'HKD' => array( 'dp' => '.', 'ts' => ',' );
+				'HUF' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true, 'round' => true );
+				'IDR' => array( 'dp' => ',', 'ts' => '.', 'round' => true );
+				'ILS' => array( 'dp' => '.', 'ts' => ',', 'after' => true );
+				'INR' => array( 'dp' => '.', 'ts' => ',' );
+				'ISK' => array( 'dp' => '.', 'ts' => ',' );
+				'JPY' => array( 'dp' => '.', 'ts' => ',', 'round' => true );
+				'KRW' => array( 'dp' => '.', 'ts' => ',', 'round' => true );
+				'MXN' => array( 'dp' => '.', 'ts' => ',' );
+				'MYR' => array( 'dp' => '.', 'ts' => ',' );
+				'NOK' => array( 'dp' => ',', 'ts' => '&nbsp;' );
+				'NZD' => array( 'dp' => '.', 'ts' => ',' );
+				'PHP' => array( 'dp' => '.', 'ts' => ',' );
+				'PLN' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
+				'RON' => array( 'dp' => ',', 'ts' => '.', 'after' => true );
+				'SEK' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
+				'SGD' => array( 'dp' => '.', 'ts' => ',' );
+				'THB' => array( 'dp' => '.', 'ts' => ',' );
+				'TRY' => array( 'dp' => ',', 'ts' => '.', 'after' => true );
+				'USD' => array( 'dp' => '.', 'ts' => ',' );
+				'ZAR' => array( 'dp' => ',', 'ts' => '&nbsp;' );
+			)
+		);
+
+		return $formats;
 	}
 
 	protected static function getEuroFxRef( $currency = null ) {
