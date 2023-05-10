@@ -42,12 +42,14 @@ class EuroFxRef {
 	}
 
 	public static function legal_string( $atts ) {
-		$prepend = '* ';
-
-		if( is_array( $atts ) && isset( $atts['prepend'] ) ) {
-			$prepend = $atts['prepend'];
+		if ( is_string( $atts ) ) {
+			$atts['prepend'] = $atts;
 		}
-		return $prepend . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank">ECB reference rates</a>.', __CLASS__ );
+
+		$atts = shortcode_atts( array(
+			'prepend' => '* ',
+		), $atts, 'currency_legal' );
+		return $atts['prepend'] . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank">ECB reference rates</a>.', __CLASS__ );
 	}
 
 	public static function convert( $amount = 0, $from = 'EUR', $to = 'USD' ) {
@@ -73,9 +75,9 @@ class EuroFxRef {
 
 	public function currency_converter( $atts ) {
 		extract( shortcode_atts( array(
-			'amount' => '1',
 			'from' => 'EUR',
 			'to' => 'USD',
+			'amount' => '1',
 			'iso' => false,
 			//'flag' => '',
 			'show_from' => true,
@@ -84,10 +86,10 @@ class EuroFxRef {
 			'round' => true,
 			'round_append' => '=',
 			'to_style' => 'cursor:help;border-bottom:1px dotted gray;',
-		), $atts ) );
+		), $atts, 'currency' ) );
 
 		// fix booleans
-		foreach( array( 'iso', 'show_from', 'round' ) as $var ) {
+		foreach( array( 'iso', 'show_from', 'no_from_show_rate', 'round' ) as $var ) {
 			$$var = $this->_bool_from_string( $$var );
 		}
 
