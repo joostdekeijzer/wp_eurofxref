@@ -4,7 +4,7 @@
  * Plugin URI: https://wordpress.org/plugins/euro-fxref-currency-converter/
  * Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates. Please visit <a href="https://wordpress.org/plugins/euro-fxref-currency-converter/" target="_blank">the plugin page on WordPress.org</a> for help and options.
  * Text Domain: euro-fxref-currency-converter
- * Version: 2.0
+ * Version: 2.0.1
  * Author: Joost de Keijzer
  * Author URI: https://dkzr.nl/
  * Requires at least: 3.3
@@ -36,29 +36,17 @@ class EuroFxRef {
 		// for testing
 		//delete_transient( self::TRANSIENT_LABEL );
 
-		add_shortcode( 'currency', array( $this, 'currency_converter' ) );
-		add_shortcode( 'currency_legal', array( $this, 'legal_string' ) );
+		add_shortcode( 'currency', array( $this, 'currency_shortcode' ) );
+		add_shortcode( 'currency_legal', array( $this, 'currency_legal_shortcode' ) );
 
 		add_action( 'admin_head', array( $this, 'insert_help_tab' )  );
 	}
 
-	public static function legal_string( $atts ) {
-		if ( is_string( $atts ) ) {
-			$atts = array( 'prepend' => $atts );
-		}
-
-		$atts = shortcode_atts( array(
-			'prepend' => '* ',
-		), $atts, 'currency_legal' );
-
-		$output = '';
-
-		if ( $atts['prepend'] ) {
-			$output = sprintf( '<span class="eurofxref-prepend-string">%s</span>', $atts['prepend'] );
-		}
-
-
-		return $output . sprintf( __( 'For informational purposes only. Exchange rates may vary. Based on <a href="%s" target="_blank">ECB reference rates</a>.', 'euro-fxref-currency-converter' ), 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/' );
+	/**
+	 * Available for static calling.
+	 */
+	public static function legal_string( $prepend = '* ' ) {
+		return self::currency_legal_shortcode( array( 'prepend' => $prepend ) );
 	}
 
 	public static function convert( $amount = 0, $from = 'EUR', $to = 'USD' ) {
@@ -84,7 +72,15 @@ class EuroFxRef {
 		}
 	}
 
+	/**
+	 * Available for static calling.
+	 */
 	public function currency_converter( $atts ) {
+		_deprecated_function( __METHOD__, 'euro-fxref-currency-converter-2.0.1', 'EuroFxRef::currency_shortcode' );
+		return $this->currency_shortcode( $atts );
+	}
+
+	public function currency_shortcode( $atts ) {
 		extract( shortcode_atts( array(
 			'from' => 'EUR',
 			'to' => 'USD',
@@ -154,6 +150,21 @@ class EuroFxRef {
 		}
 
 		return $output;
+	}
+
+	public static function currency_legal_shortcode( $atts ) {
+		$atts = shortcode_atts( array(
+			'prepend' => '* ',
+		), $atts, 'currency_legal' );
+
+		$output = '';
+
+		if ( $atts['prepend'] ) {
+			$output = sprintf( '<span class="eurofxref-prepend-string">%s</span>', $atts['prepend'] );
+		}
+
+
+		return $output . sprintf( __( 'For informational purposes only. Exchange rates may vary. Based on <a href="%s" target="_blank">ECB reference rates</a>.', 'euro-fxref-currency-converter' ), 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/' );
 	}
 
 	public function insert_help_tab() {
