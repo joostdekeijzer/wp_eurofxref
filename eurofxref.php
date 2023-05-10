@@ -43,7 +43,7 @@ class EuroFxRef {
 
 	public static function legal_string( $atts ) {
 		if ( is_string( $atts ) ) {
-			$atts['prepend'] = $atts;
+			$atts = array( 'prepend' => $atts );
 		}
 
 		$atts = shortcode_atts( array(
@@ -231,37 +231,37 @@ EOH;
 		$formats = apply_filters(
 			'eurofxref_number_formats',
 			array(
-				'AUD' => array( 'dp' => '.', 'ts' => ',' );
-				'BGN' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
-				'BRL' => array( 'dp' => ',', 'ts' => '.' );
-				'CAD' => array( 'dp' => '.', 'ts' => ',' );
-				'CHF' => array( 'dp' => '.', 'ts' => '&rsquo;', 'after' => true );
-				'CNY' => array( 'dp' => '.', 'ts' => ',' );
-				'CZK' => array( 'dp' => '.', 'ts' => '&nbsp;', 'after' => true );
-				'DKK' => array( 'dp' => ',', 'ts' => '.', 'after' => true );
-				'EUR' => array( 'dp' => ',', 'ts' => '.' , 'after' => false );
-				'GBP' => array( 'dp' => '.', 'ts' => ',' );
-				'HKD' => array( 'dp' => '.', 'ts' => ',' );
-				'HUF' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true, 'round' => true );
-				'IDR' => array( 'dp' => ',', 'ts' => '.', 'round' => true );
-				'ILS' => array( 'dp' => '.', 'ts' => ',', 'after' => true );
-				'INR' => array( 'dp' => '.', 'ts' => ',' );
-				'ISK' => array( 'dp' => '.', 'ts' => ',' );
-				'JPY' => array( 'dp' => '.', 'ts' => ',', 'round' => true );
-				'KRW' => array( 'dp' => '.', 'ts' => ',', 'round' => true );
-				'MXN' => array( 'dp' => '.', 'ts' => ',' );
-				'MYR' => array( 'dp' => '.', 'ts' => ',' );
-				'NOK' => array( 'dp' => ',', 'ts' => '&nbsp;' );
-				'NZD' => array( 'dp' => '.', 'ts' => ',' );
-				'PHP' => array( 'dp' => '.', 'ts' => ',' );
-				'PLN' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
-				'RON' => array( 'dp' => ',', 'ts' => '.', 'after' => true );
-				'SEK' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
-				'SGD' => array( 'dp' => '.', 'ts' => ',' );
-				'THB' => array( 'dp' => '.', 'ts' => ',' );
-				'TRY' => array( 'dp' => ',', 'ts' => '.', 'after' => true );
-				'USD' => array( 'dp' => '.', 'ts' => ',' );
-				'ZAR' => array( 'dp' => ',', 'ts' => '&nbsp;' );
+				'AUD' => array( 'dp' => '.', 'ts' => ',' ),
+				'BGN' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true ),
+				'BRL' => array( 'dp' => ',', 'ts' => '.' ),
+				'CAD' => array( 'dp' => '.', 'ts' => ',' ),
+				'CHF' => array( 'dp' => '.', 'ts' => '&rsquo;', 'after' => true ),
+				'CNY' => array( 'dp' => '.', 'ts' => ',' ),
+				'CZK' => array( 'dp' => '.', 'ts' => '&nbsp;', 'after' => true ),
+				'DKK' => array( 'dp' => ',', 'ts' => '.', 'after' => true ),
+				'EUR' => array( 'dp' => ',', 'ts' => '.' , 'after' => false ),
+				'GBP' => array( 'dp' => '.', 'ts' => ',' ),
+				'HKD' => array( 'dp' => '.', 'ts' => ',' ),
+				'HUF' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true, 'round' => true ),
+				'IDR' => array( 'dp' => ',', 'ts' => '.', 'round' => true ),
+				'ILS' => array( 'dp' => '.', 'ts' => ',', 'after' => true ),
+				'INR' => array( 'dp' => '.', 'ts' => ',' ),
+				'ISK' => array( 'dp' => '.', 'ts' => ',' ),
+				'JPY' => array( 'dp' => '.', 'ts' => ',', 'round' => true ),
+				'KRW' => array( 'dp' => '.', 'ts' => ',', 'round' => true ),
+				'MXN' => array( 'dp' => '.', 'ts' => ',' ),
+				'MYR' => array( 'dp' => '.', 'ts' => ',' ),
+				'NOK' => array( 'dp' => ',', 'ts' => '&nbsp;' ),
+				'NZD' => array( 'dp' => '.', 'ts' => ',' ),
+				'PHP' => array( 'dp' => '.', 'ts' => ',' ),
+				'PLN' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true ),
+				'RON' => array( 'dp' => ',', 'ts' => '.', 'after' => true ),
+				'SEK' => array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true ),
+				'SGD' => array( 'dp' => '.', 'ts' => ',' ),
+				'THB' => array( 'dp' => '.', 'ts' => ',' ),
+				'TRY' => array( 'dp' => ',', 'ts' => '.', 'after' => true ),
+				'USD' => array( 'dp' => '.', 'ts' => ',' ),
+				'ZAR' => array( 'dp' => ',', 'ts' => '&nbsp;' ),
 			)
 		);
 
