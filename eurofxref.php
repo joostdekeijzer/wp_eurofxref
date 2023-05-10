@@ -4,7 +4,7 @@
  * Plugin URI: https://wordpress.org/plugins/euro-fxref-currency-converter/
  * Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates. Please visit <a href="https://wordpress.org/plugins/euro-fxref-currency-converter/" target="_blank">the plugin page on WordPress.org</a> for help and options.
  * Text Domain: euro-fxref-currency-converter
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: Joost de Keijzer
  * Author URI: https://dkzr.nl/
  * Requires at least: 3.3
@@ -322,16 +322,17 @@ EOH;
 					}
 
 					/**
-					 * Calculate transient expiration to try update around 3.00 p.m. (15h00) daily
+					 * Calculate transient expiration to try update around 17h00 daily
 					 * with a minimum of 15 minutes and a maximum of 6 hours.
+					 * ECB publishes around 16h00 daily so around 17h00 the new rates should be published.
 					 * 
 					 * All calculated in Seconds since the Unix Epoch to support PHP 5.2
 					 */
 					$pubEpoch = date_format( new DateTime( $fxRefDateString, new DateTimeZone('CET') ), 'U' );
-					$pubEpoch += 60 * 60 * 15; // add 15h for actual publication date
+					$pubEpoch += 60 * 60 * 17; // add 17h to be around 1 (one) hour past actual publication date
 					$pubEpoch += 60 * 60 * 24; // add 24h for NEXT publication date
 
-					$transient_expiration = min( 60 * 60 * 6, max( 60 * 15, $pubEpoch - current_time('timestamp', true) ) );
+					$transient_expiration = min( 60 * 60 * 6, max( 60 * 15, $pubEpoch - date_format( new DateTime( 'now', new DateTimeZone('CET') ), 'U' ) ) );
 
 					set_transient( self::TRANSIENT_LABEL, self::$euroFxRef, $transient_expiration );
 				}
