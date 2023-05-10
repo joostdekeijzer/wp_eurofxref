@@ -85,6 +85,7 @@ class EuroFxRef {
 			'append' => '&nbsp;*',
 			'round' => true,
 			'round_append' => '=',
+			'no_from_show_rate' => true,
 			'to_style' => 'cursor:help;border-bottom:1px dotted gray;',
 		), $atts, 'currency' ) );
 
@@ -96,9 +97,9 @@ class EuroFxRef {
 		$currency = $this->get_currency_symbols();
 		$number_format = $this->get_number_formats();
 
-		if( !isset($currency[$from] ) || !isset($currency[$to] ) ) {
-			$currency[$from] = $currency[$to] = '';
-			$number_format[$from] = $number_format[$to] = array( 'dp' => ',', 'ts' => '.' );
+		if( !isset( $currency[ $from ] ) || !isset( $currency[ $to ] ) ) {
+			$currency[ $from ] = $currency[ $to ] = '';
+			$number_format[ $from ] = $number_format[ $to ] = array( 'dp' => ',', 'ts' => '.' );
 			$iso = true;
 		}
 
@@ -130,10 +131,13 @@ class EuroFxRef {
 			} else {
 				$output = $currency[$to] . $s . $cAmount;
 			}
-			$cOne = number_format( self::convert( 1, strtoupper( $from ), strtoupper( $to ) ), 4, $number_format[$to]['dp'], $number_format[$to]['ts'] );
-			$output = "<span style='$to_style' title='1 $from = $cOne $to'>" . $output . '</span>' . $append;
+
+			if ( $no_from_show_rate ) {
+				$cOne = number_format( self::convert( 1, strtoupper( $from ), strtoupper( $to ) ), 4, $number_format[$to]['dp'], $number_format[$to]['ts'] );
+				$output = sprintf( '<span style="%s" title="%s">%s</span>', esc_attr( $to_style ), esc_attr( "1 ${from} = ${cOne} ${to}" ), $output );
+			}
 		}
-		return $output;
+		return $output . $append;
 	}
 
 	public function insert_help_tab() {
