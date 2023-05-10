@@ -50,7 +50,15 @@ class EuroFxRef {
 		$atts = shortcode_atts( array(
 			'prepend' => '* ',
 		), $atts, 'currency_legal' );
-		return $atts['prepend'] . __( 'For informational purposes only. Exchange rates may vary. Based on <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank">ECB reference rates</a>.', __CLASS__ );
+
+		$output = '';
+
+		if ( $atts['prepend'] ) {
+			$output = sprintf( '<span class="eurofxref-prepend-string">%s</span>', $atts['prepend'] );
+		}
+
+
+		return $output . sprintf( __( 'For informational purposes only. Exchange rates may vary. Based on <a href="%s" target="_blank">ECB reference rates</a>.', 'euro-fxref-currency-converter' ), 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/' );
 	}
 
 	public static function convert( $amount = 0, $from = 'EUR', $to = 'USD' ) {
@@ -122,11 +130,11 @@ class EuroFxRef {
 			if( $iso ) {
 				$output = $amount . $s . $from;
 				if( $cAmount > 0 )
-					$output .= $between . $cAmount . $s . $to . $append;
+					$output .= $between . $cAmount . $s . $to;
 			} else {
 				$output = $currency[$from] . $s . $amount;
 				if( $cAmount > 0 )
-					$output .= $between . $currency[$to] . $s . $cAmount . $append;
+					$output .= $between . $currency[$to] . $s . $cAmount;
 			}
 		} else {
 			if( $iso ) {
@@ -137,10 +145,15 @@ class EuroFxRef {
 
 			if ( $no_from_show_rate ) {
 				$cOne = number_format( self::convert( 1, strtoupper( $from ), strtoupper( $to ) ), 4, $number_format[$to]['dp'], $number_format[$to]['ts'] );
-				$output = sprintf( '<span style="%s" title="%s">%s</span>', esc_attr( $to_style ), esc_attr( "1 ${from} = ${cOne} ${to}" ), $output );
+				$output = sprintf( '<span class="eurofxref-conversion-rate" style="%s" title="%s">%s</span>', esc_attr( $to_style ), esc_attr( "1 ${from} = ${cOne} ${to}" ), $output );
 			}
 		}
-		return $output . $append;
+
+		if ( $append ) {
+			$output .= sprintf( '<span class="eurofxref-append-string">%s</span>', $append );
+		}
+
+		return $output;
 	}
 
 	public function insert_help_tab() {
