@@ -6,39 +6,38 @@
  *
  * License: GPLv2 or later
  */
-$currency['EUR'] = '&euro;';
-
-$currency['USD'] = '$';					// US Dollar
-$currency['JPY'] = '&#165;';		// Japanese Yen
-$currency['BGN'] = 'ЛВ.';				// Bulgarian Lev
-$currency['CZK'] = 'K&#269;';		// Czech Republic Koruna
-$currency['DKK'] = 'kr';				// Danish Krone
-$currency['GBP'] = '&pound;';		// British Pound Sterling
-$currency['HUF'] = 'Ft';				// Hungarian Forint
-$currency['PLN'] = 'z&#322;';		// Polish Zloty
-$currency['RON'] = 'RON';				// New Romanian Leu
-$currency['SEK'] = 'kr';				// Swedish Krona
-$currency['CHF'] = 'CHF';				// Swiss Franc
-$currency['ISK'] = 'kr';				// Icelandic krona
-$currency['NOK'] = 'kr';				// Norwegian Krone
-$currency['HRK'] = 'kn';				// Croatian Kuna
-$currency['RUB'] = 'py6.';			// Russian Rouble
-$currency['TRY'] = 'TL';				// Turkish Lira
 $currency['AUD'] = '$';					// Australian Dollar
+$currency['BGN'] = 'ЛВ.';				// Bulgarian Lev
 $currency['BRL'] = 'R$';				// Brasilian Real
 $currency['CAD'] = '$';					// Canadian Dollar
+$currency['CHF'] = 'CHF';				// Swiss Franc
 $currency['CNY'] = '&#20803;';	// Chinese Yuan
+$currency['CZK'] = 'K&#269;';		// Czech Republic Koruna
+$currency['DKK'] = 'kr';				// Danish Krone
+$currency['EUR'] = '&euro;';
+$currency['GBP'] = '&pound;';		// British Pound Sterling
 $currency['HKD'] = '$';					// Hong Kong Dollar
+$currency['HRK'] = 'kn';				// Croatian Kuna
+$currency['HUF'] = 'Ft';				// Hungarian Forint
 $currency['IDR'] = 'Rp';				// Indonesian Rupiah
 $currency['ILS'] = '&#8362;';		// Israeli New Sheqel
 $currency['INR'] = '&#8377;';		// Indian Rupee - Rs &#8377; ₹
+$currency['ISK'] = 'kr';				// Icelandic krona
+$currency['JPY'] = '&#165;';		// Japanese Yen
 $currency['KRW'] = '&#8361;';		// South Korean Won
 $currency['MXN'] = '$';					// Mexican Peso
 $currency['MYR'] = 'RM';				// Malaysian Ringgit
+$currency['NOK'] = 'kr';				// Norwegian Krone
 $currency['NZD'] = '$';					// New Zealand Dollar
 $currency['PHP'] = '₱';					// Philippine Peso - P ₱
+$currency['PLN'] = 'z&#322;';		// Polish Zloty
+$currency['RON'] = 'RON';				// New Romanian Leu
+$currency['RUB'] = 'py6.';			// Russian Rouble
+$currency['SEK'] = 'kr';				// Swedish Krona
 $currency['SGD'] = '$';					// Singapore Dollar
 $currency['THB'] = '&#3647;';		// Thai Baht
+$currency['TRY'] = 'TL';				// Turkish Lira
+$currency['USD'] = '$';					// US Dollar
 $currency['ZAR'] = 'R';					// South African Rand
 
 //$currency['LTL'] = 'Lt';			// Lithuanian Litas - not published on 2020-01-01
@@ -65,43 +64,42 @@ $currency['ZAR'] = 'R';					// South African Rand
 /**
  * added number format
  */
-$number_format['EUR'] = array( 'dp' => ',', 'ts' => '.' , 'after' => false );
-
-$number_format['USD'] = array( 'dp' => '.', 'ts' => ',' );
-$number_format['JPY'] = array( 'dp' => '.', 'ts' => ',', 'round' => true );
-$number_format['BGN'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
-$number_format['CZK'] = array( 'dp' => '.', 'ts' => '&nbsp;', 'after' => true );
-$number_format['DKK'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
-$number_format['GBP'] = array( 'dp' => '.', 'ts' => ',' );
-$number_format['HUF'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true, 'round' => true );
-$number_format['LTL'] = array( 'dp' => '.', 'ts' => ',', 'after' => true );
-$number_format['LVL'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
-$number_format['PLN'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
-$number_format['RON'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
-$number_format['SEK'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
-$number_format['CHF'] = array( 'dp' => '.', 'ts' => '&rsquo;', 'after' => true );
-$number_format['ISK'] = array( 'dp' => '.', 'ts' => ',' );
-$number_format['NOK'] = array( 'dp' => ',', 'ts' => '&nbsp;' );
-$number_format['HRK'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
-$number_format['RUB'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
-$number_format['TRY'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
 $number_format['AUD'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['BGN'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
 $number_format['BRL'] = array( 'dp' => ',', 'ts' => '.' );
 $number_format['CAD'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['CHF'] = array( 'dp' => '.', 'ts' => '&rsquo;', 'after' => true );
 $number_format['CNY'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['CZK'] = array( 'dp' => '.', 'ts' => '&nbsp;', 'after' => true );
+$number_format['DKK'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
+$number_format['EUR'] = array( 'dp' => ',', 'ts' => '.' , 'after' => false );
+$number_format['GBP'] = array( 'dp' => '.', 'ts' => ',' );
 $number_format['HKD'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['HUF'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true, 'round' => true );
 $number_format['IDR'] = array( 'dp' => ',', 'ts' => '.', 'round' => true );
 $number_format['ILS'] = array( 'dp' => '.', 'ts' => ',', 'after' => true );
 $number_format['INR'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['ISK'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['JPY'] = array( 'dp' => '.', 'ts' => ',', 'round' => true );
 $number_format['KRW'] = array( 'dp' => '.', 'ts' => ',', 'round' => true );
 $number_format['MXN'] = array( 'dp' => '.', 'ts' => ',' );
 $number_format['MYR'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['NOK'] = array( 'dp' => ',', 'ts' => '&nbsp;' );
 $number_format['NZD'] = array( 'dp' => '.', 'ts' => ',' );
 $number_format['PHP'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['PLN'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
+$number_format['RON'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
+$number_format['SEK'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
 $number_format['SGD'] = array( 'dp' => '.', 'ts' => ',' );
 $number_format['THB'] = array( 'dp' => '.', 'ts' => ',' );
+$number_format['TRY'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
+$number_format['USD'] = array( 'dp' => '.', 'ts' => ',' );
 $number_format['ZAR'] = array( 'dp' => ',', 'ts' => '&nbsp;' );
 
+//$number_format['RUB'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
+//$number_format['LTL'] = array( 'dp' => '.', 'ts' => ',', 'after' => true );
+//$number_format['LVL'] = array( 'dp' => ',', 'ts' => '&nbsp;', 'after' => true );
+//$number_format['HRK'] = array( 'dp' => ',', 'ts' => '.', 'after' => true );
 //$number_format['EGP'] = array( 'dp' => '.', 'ts' => ',' );
 //$number_format['ARS'] = array( 'dp' => '.', 'ts' => ',' );
 //$number_format['BBD'] = array( 'dp' => '.', 'ts' => ',' );
