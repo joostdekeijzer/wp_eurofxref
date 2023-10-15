@@ -52,7 +52,7 @@ class EuroFxRef {
 	public static function convert( $amount = 0, $from = 'EUR', $to = 'USD' ) {
 		$from = strtoupper( $from );
 		$to   = strtoupper( $to );
-
+                if ($amount == 0) return 0;
 		if( ( 'EUR' != $from && null === self::getEuroFxRef( $from ) ) || ( 'EUR' != $to && null === self::getEuroFxRef( $to ) ) ) {
 			return 0;
 		}
