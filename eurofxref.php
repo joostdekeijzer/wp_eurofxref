@@ -52,7 +52,7 @@ class EuroFxRef {
 		$to   = strtoupper( $to );
 
 		if( ( 'EUR' != $from && null === self::getEuroFxRef( $from ) ) || ( 'EUR' != $to && null === self::getEuroFxRef( $to ) ) ) {
-			return 0;
+			return false;
 		}
 
 		if( 'EUR' != $from && 'EUR' != $to ) {
@@ -108,26 +108,24 @@ class EuroFxRef {
 			$iso = true;
 		}
 
-		$cAmount = self::convert( $amount, $from, $to );
-		if( $cAmount > 0 ) {
+		$cAmount = self::convert( floatval( $amount ), $from, $to );
+		if( false !== $cAmount ) {
 			$cAmount = number_format( $cAmount, ( $round ? 0 : 2 ), $number_format[$to]['dp'], $number_format[$to]['ts'] );
 			if( $round && '' != $round_append ) $cAmount .= $number_format[$to]['dp'] . $round_append;
-		} else {
-			$show_from = true;
 		}
 
 		$amount = number_format( $amount, ( $round ? 0 : 2 ), $number_format[$from]['dp'], $number_format[$from]['ts'] );
 		if( $round && '' != $round_append ) $amount .= $number_format[$from]['dp'] . $round_append;
 
 		$s = $this->space;
-		if( $show_from ) {
+		if( $show_from || false === $cAmount ) {
 			if( $iso ) {
 				$output = $amount . $s . $from;
-				if( $cAmount > 0 )
+				if( false !== $cAmount )
 					$output .= $between . $cAmount . $s . $to;
 			} else {
 				$output = $currency[$from] . $s . $amount;
-				if( $cAmount > 0 )
+				if( false !== $cAmount )
 					$output .= $between . $currency[$to] . $s . $cAmount;
 			}
 		} else {
