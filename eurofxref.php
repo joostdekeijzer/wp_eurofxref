@@ -376,4 +376,3 @@ EOH;
 	}
 }
 $EuroFxRef = new EuroFxRef();
-
