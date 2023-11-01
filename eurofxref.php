@@ -11,9 +11,7 @@
  * Requires PHP: 7.0
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- */
-
-/**
+ *
  * Development code at https://github.com/joostdekeijzer/wp_eurofxref
  *
  * This plugin is based on the Xclamation Currency Converter Shortcode plugin.
