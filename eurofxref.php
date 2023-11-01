@@ -82,18 +82,18 @@ class EuroFxRef {
 
 	public function currency_shortcode( $atts ) {
 		extract( shortcode_atts( array(
-			'from' => 'EUR',
-			'to' => 'USD',
-			'amount' => '1',
-			'iso' => false,
-			//'flag' => '',
-			'show_from' => true,
-			'between' => '&nbsp;/&nbsp;',
-			'append' => '&nbsp;*',
-			'round' => true,
-			'round_append' => '=',
+			'from'              => 'EUR',
+			'to'                => 'USD',
+			'amount'            => 1,
+			'iso'               => false,
+			'show_from'         => true,
+			'between'           => '&nbsp;/&nbsp;',
+			'append'            => '&nbsp;*',
+			'round'             => true,
+			'round_append'      => '=',
 			'no_from_show_rate' => true,
-			'to_style' => 'cursor:help;border-bottom:1px dotted gray;',
+			'to_style'          => 'cursor:help;border-bottom:1px dotted gray;',
+			//'flag' => '',
 		), $atts, 'currency' ) );
 
 		// fix booleans
