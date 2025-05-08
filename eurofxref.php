@@ -139,7 +139,7 @@ class EuroFxRef {
 
 			if ( $no_from_show_rate ) {
 				$cOne = number_format( self::convert( 1, strtoupper( $from ), strtoupper( $to ) ), 4, $number_format[$to]['dp'], $number_format[$to]['ts'] );
-				$output = sprintf( '<span class="eurofxref-conversion-rate" style="%s" title="%s">%s</span>', esc_attr( $to_style ), esc_attr( "1 ${from} = ${cOne} ${to}" ), $output );
+				$output = sprintf( '<span class="eurofxref-conversion-rate" style="%s" title="%s">%s</span>', esc_attr( $to_style ), esc_attr( "1 {$from} = {$cOne} {$to}" ), $output );
 			}
 		}
 
