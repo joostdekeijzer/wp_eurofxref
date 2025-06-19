@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkz
 Tags: shortcode, currency, converter, foreign exchange conversion, fx rate converter
 Requires at least: 3.3
 Tested up to: 6.8
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -159,6 +159,8 @@ RUB is not published since 1-jun-2022 and HRK since 2-jan-2023.
 
 == Frequently Asked Questions ==
 
+Development takes place at [https://github.com/joostdekeijzer/wp_eurofxref](https://github.com/joostdekeijzer/wp_eurofxref)
+
 = Where do the exchange rates come from? =
 The European Central Bank (ECB) daily publishes "foreign exchange reference rates" against more than 30 other currencies. These rates are used by this plugin.
 
@@ -186,6 +188,11 @@ Since v2.0 the following filters are available:
 * 'eurofxref_number_formats' to modify the currency number formatting used in your site.
 
 == Changelog ==
+
+= 2.0.3 =
+* Made all texts translatable
+* Escape (logged in) user shortcode attributes (CVE-2025-6257 kindly reported by Gilang via Wordfence)
+* Plugin icon!
 
 = 2.0.2 =
 * The plugin now tries to retrieve the new ECB rates around 17h00 CET. ECB updates their rates around 16h00 CET so updating an hour later should retreive the newest rates.
