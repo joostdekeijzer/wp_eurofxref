@@ -173,23 +173,19 @@ class EuroFxRef {
 		if( 'post' != $screen->base || !post_type_supports($post_type, 'editor') ) return;
 	
 		$id = __CLASS__ . '_help_id';
-		$title = __( "Using the [currency] shortcodes", __CLASS__ );
-		$help = <<<EOH
-<p><strong>currency</strong> shortcode examples:<br/>
-	<code>[currency from="EUR" to="GBP" amount="10"]</code><br/>
-	<code>[currency from="JPY" to="CHF" amount="750"]</code></p>
-<p>Full example with default values:<br/>
-	<code>[currency from="EUR" to="USD" amount="1" iso=false show_from=true between="&amp;nbsp;/&amp;nbsp;" append="&amp;nbsp;*" round=true round_append="=" to_style="cursor:help;border-bottom:1px dotted gray;"]</code></p>
-
-<p><strong>currency_legal</strong> shortcode examples:<br/>
-	<code>[currency_legal]</code><br/>
-	<code>[currency_legal prepend='* ']</code> (full example with default value)</p>
-<p>The legal text is:<br/>
-	'For informational purposes only. Exchange rates may vary. Based on <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/" target="_blank">ECB reference rates</a>.'</p>
-
-<p><strong>Need more help?</strong><br/>
-	Please visit <a href="https://wordpress.org/plugins/euro-fxref-currency-converter/" target="_blank">https://wordpress.org/plugins/euro-fxref-currency-converter/</a> for more examples and a full list of supported currencies.</p>
-EOH;
+		$title = __( "Using the [currency] shortcodes", 'euro-fxref-currency-converter' );
+		$help  = '<p>' . __( '<strong>currency</strong> shortcode examples:', 'euro-fxref-currency-converter' ) . '<br/>';
+		$help .= __( '<code>[currency from="EUR" to="GBP" amount="10"]</code>', 'euro-fxref-currency-converter' ) . '<br/>';
+		$help .= __( '<code>[currency from="JPY" to="CHF" amount="750"]</code>', 'euro-fxref-currency-converter' ) . '</p>';
+		$help .= '<p>' . __( 'Full example with default values:', 'euro-fxref-currency-converter' ) . '<br/>';
+		$help .= __( '<code>[currency from="EUR" to="USD" amount="1" iso=false show_from=true between="&amp;nbsp;/&amp;nbsp;" append="&amp;nbsp;*" round=true round_append="=" to_style="cursor:help;border-bottom:1px dotted gray;"]</code>', 'euro-fxref-currency-converter' ) . '</p>';
+		$help .= '<p>' . __( '<strong>currency_legal</strong> shortcode examples:', 'euro-fxref-currency-converter' ) . '<br/>';
+		$help .= __( '<code>[currency_legal]</code>', 'euro-fxref-currency-converter' ) . '<br/>';
+		$help .= __( '<code>[currency_legal prepend="* "]</code> (full example with default value)', 'euro-fxref-currency-converter' ) . '</p>';
+		$help .= '<p>' . __( 'The legal text is:', 'euro-fxref-currency-converter' ) . '<br/>';
+		$help .= '<blockquote>"' . sprintf( __( 'For informational purposes only. Exchange rates may vary. Based on <a href="%s" target="_blank">ECB reference rates</a>.', 'euro-fxref-currency-converter' ), 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/' ) . '"</blockquote></p>';
+		$help .= '<p>' . __( '<strong>Need more help?</strong>', 'euro-fxref-currency-converter' ) . '<br/>';
+		$help .= __( 'Please visit <a href="https://wordpress.org/plugins/euro-fxref-currency-converter/" target="_blank">https://wordpress.org/plugins/euro-fxref-currency-converter/</a> for more examples and a full list of supported currencies.', 'euro-fxref-currency-converter' ) . '</p>';
 
 		$screen->add_help_tab( array(
 			'id' => $id,
