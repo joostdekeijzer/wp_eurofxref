@@ -101,6 +101,14 @@ class EuroFxRef {
 			$$var = $this->_bool_from_string( $$var );
 		}
 
+		// html escape text attributes
+		foreach( array( 'from', 'to', 'between', 'append', 'round_append' ) as $var ) {
+			$$var = esc_html( $$var );
+		}
+
+		// attribute escape
+		$to_style = esc_attr( $to_style );
+
 		$currency = $this->get_currency_symbols();
 		$number_format = $this->get_number_formats();
 
@@ -141,7 +149,7 @@ class EuroFxRef {
 
 			if ( $no_from_show_rate ) {
 				$cOne = number_format( self::convert( 1, strtoupper( $from ), strtoupper( $to ) ), 4, $number_format[$to]['dp'], $number_format[$to]['ts'] );
-				$output = sprintf( '<span class="eurofxref-conversion-rate" style="%s" title="%s">%s</span>', esc_attr( $to_style ), esc_attr( "1 {$from} = {$cOne} {$to}" ), $output );
+				$output = sprintf( '<span class="eurofxref-conversion-rate" style="%s" title="%s">%s</span>', $to_style, esc_attr( "1 {$from} = {$cOne} {$to}" ), $output );
 			}
 		}
 
@@ -160,7 +168,7 @@ class EuroFxRef {
 		$output = '';
 
 		if ( $atts['prepend'] ) {
-			$output = sprintf( '<span class="eurofxref-prepend-string">%s</span>', $atts['prepend'] );
+			$output = sprintf( '<span class="eurofxref-prepend-string">%s</span>', esc_html( $atts['prepend'] ) );
 		}
 
 
