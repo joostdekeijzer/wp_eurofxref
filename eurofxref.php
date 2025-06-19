@@ -96,6 +96,9 @@ class EuroFxRef {
 			//'flag' => '',
 		), $atts, 'currency' ) );
 
+		// validate numbers
+		$amount = floatval( $amount );
+
 		// fix booleans
 		foreach( array( 'iso', 'show_from', 'no_from_show_rate', 'round' ) as $var ) {
 			$$var = $this->_bool_from_string( $$var );
