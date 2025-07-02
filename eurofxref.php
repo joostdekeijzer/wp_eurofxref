@@ -4,7 +4,7 @@
  * Plugin URI: https://dkzr.nl/
  * Description: Adds the [currency] and [currency_legal] shortcodes to convert currencies based on the ECB reference exchange rates. Please visit <a href="https://wordpress.org/plugins/euro-fxref-currency-converter/" target="_blank">the plugin page on WordPress.org</a> for help and options.
  * Text Domain: euro-fxref-currency-converter
- * Version: 2.0.3
+ * Version: 2.0.4
  * Author: Joost de Keijzer
  * Author URI: https://dkzr.nl/
  * Requires at least: 3.3
@@ -106,7 +106,7 @@ class EuroFxRef {
 
 		// html escape text attributes
 		foreach( array( 'from', 'to', 'between', 'append', 'round_append' ) as $var ) {
-			$$var = esc_html( $$var );
+			$$var = wp_filter_post_kses( $$var );
 		}
 
 		// attribute escape
@@ -171,7 +171,7 @@ class EuroFxRef {
 		$output = '';
 
 		if ( $atts['prepend'] ) {
-			$output = sprintf( '<span class="eurofxref-prepend-string">%s</span>', esc_html( $atts['prepend'] ) );
+			$output = sprintf( '<span class="eurofxref-prepend-string">%s</span>', wp_filter_post_kses( $atts['prepend'] ) );
 		}
 
 

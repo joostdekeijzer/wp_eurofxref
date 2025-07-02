@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkz
 Tags: shortcode, currency, converter, foreign exchange conversion, fx rate converter
 Requires at least: 3.3
 Tested up to: 6.8
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -188,6 +188,9 @@ Since v2.0 the following filters are available:
 * 'eurofxref_number_formats' to modify the currency number formatting used in your site.
 
 == Changelog ==
+
+= 2.0.4 =
+* Modified attribute escaping from esc_html to wp_filter_post_kses so simple html is allowed
 
 = 2.0.3 =
 * Made all texts translatable
