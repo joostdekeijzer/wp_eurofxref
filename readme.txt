@@ -3,7 +3,7 @@ Contributors: joostdekeijzer
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=j@dkzr.nl&item_name=eurofxref+WordPress+plugin&item_number=Joost+de+Keijzer&currency_code=EUR&amount=10
 Tags: shortcode, currency, converter, foreign exchange conversion, fx rate converter
 Requires at least: 3.3
-Tested up to: 6.8
+Tested up to: 6.9
 Stable tag: 2.0.4
 Requires PHP: 7.0
 License: GPLv2 or later
