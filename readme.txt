@@ -4,7 +4,7 @@ Contributors: joostdekeijzer
 Donate link: https://bunq.me/jstdkzr?description=Open+Source+WordPress+plugin+support&amount=25
 Tags: shortcode, currency, converter, foreign exchange conversion, fx rate converter
 Requires at least: 3.3
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 2.0.4
 Requires PHP: 7.0
 License: GPLv2 or later
